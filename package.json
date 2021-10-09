@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.9",
+    "@wulkanat/hypnothing-core": "1.1.0",
     "@angular/cli": "~12.2.9",
     "@angular/compiler-cli": "~12.2.0",
     "@types/jasmine": "~3.8.0",

@@ -49,7 +49,15 @@ export class BinauralBeat {
     this.gainConstantSourceNode.start()
   }
 
-  set gain(gain: number) {
-    this.gainConstantSourceNode.offset.setTargetAtTime(gain!, this.context.currentTime, 0.5);
+  setGain(gain: number, smooth = 0.5) {
+    this.gainConstantSourceNode.offset.setTargetAtTime(gain!, this.context.currentTime, smooth);
+  }
+
+  pause() {
+    this.context.suspend();
+  }
+
+  play() {
+    this.context.resume();
   }
 }

@@ -6,24 +6,27 @@ import {BinauralBeat} from "./audio/binaural";
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   @ViewChild('audioElement') audioElement!: ElementRef<HTMLAudioElement>;
-  binaural!: BinauralBeat;
-
-  ngOnInit() {
-    this.binaural = new BinauralBeat([
-      [249, 251],
-      [199, 200],
-      [149, 151],
-      [109, 111],
-    ]);
-  }
+  binaural?: BinauralBeat;
 
   changeGain(gain: number | null) {
-    this.binaural.gain = gain!;
+    this.binaural?.setGain(gain!);
   }
 
   play(on: boolean) {
-
+    if (on) {
+      if (!this.binaural) {
+        this.binaural = new BinauralBeat([
+          [249, 251],
+          [199, 200],
+          [149, 151],
+          [109, 111],
+        ]);
+      }
+      this.binaural.play();
+    } else {
+      this.binaural?.pause();
+    }
   }
 }
