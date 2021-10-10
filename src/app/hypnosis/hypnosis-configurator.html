@@ -6,23 +6,20 @@
     <ng-template matStepLabel>Choose a Trigger</ng-template>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Review Safeties</ng-template>
-      <div *ngFor="let safety of hypnosisFile.safeties" style="display: flex; flex-direction: column">
-        <mat-card>
-            <mat-card-title-group>
-              <mat-icon>support</mat-icon>
-              <mat-card-title>{{safety.title}}</mat-card-title>
-            </mat-card-title-group>
-          <mat-card-content markdown>
-            {{safety.description}}}
-          </mat-card-content>
-          <mat-card-actions>
-            <mat-chip-list>
-              <mat-chip *ngFor="let tag of safety.tags">{{tag}}</mat-chip>
-            </mat-chip-list>
-          </mat-card-actions>
-        </mat-card>
-      </div>
+    <ng-template matStepLabel>Review Safeties & Warnings</ng-template>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let safety of hypnosisFile.safeties">
+        <mat-expansion-panel-header>
+          <mat-icon>support</mat-icon>
+          {{safety.title}}
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <hypnosis-safety [safety]="safety"></hypnosis-safety>
+        </mat-panel-description>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
   </mat-step>
   <mat-step>
     <form [formGroup]="suggestionsFormGroup">
@@ -31,7 +28,11 @@
       <mat-accordion>
         <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions">
           <mat-expansion-panel-header>
-            <mat-checkbox  [formControlName]="suggestion.uuid">
+            <mat-checkbox
+              [formControlName]="suggestion.uuid"
+              [disabled]="suggestion.isRequired"
+              (click)="$event.stopPropagation()"
+            >
               {{suggestion.title}}
             </mat-checkbox>
           </mat-expansion-panel-header>

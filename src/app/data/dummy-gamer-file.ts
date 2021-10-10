@@ -5,7 +5,7 @@ import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis";
 export const authorVincentVega: Author = {
   givenName: 'Vincent',
   familyName: 'Vega',
-  additionalName: 'Vive',
+  additionalName: 'ViVe',
   gender: Gender.Male,
 };
 
@@ -72,6 +72,17 @@ I could imagine versions with more effect or more permanence, as well as version
       },
       uuid: 'trance_when_you_die',
       isRequired: false,
+      author: authorVincentVega,
+      speaker: authorTheaSchoebl,
+    },
+    {
+      title: 'Feel every hit',
+      description: `Makes you **really** feel every hit, though it won't hurt`,
+      type: HypnosisType.SUGGESTION,
+      language: 'en',
+      translatedWorks: {},
+      uuid: 'feel_every_hit',
+      isRequired: true,
       author: authorVincentVega,
       speaker: authorTheaSchoebl,
     }
