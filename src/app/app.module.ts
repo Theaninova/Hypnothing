@@ -1,22 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSelectModule} from "@angular/material/select";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatSliderModule} from "@angular/material/slider";
-import {MatRadioModule} from "@angular/material/radio";
-import {AudioModule} from "./audio/audio.module";
-import {MatCardModule} from "@angular/material/card";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import {MatDividerModule} from "@angular/material/divider";
-import {HypnosisModule} from "./hypnosis/hypnosis.module";
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatRadioModule} from '@angular/material/radio';
+import {AudioModule} from './audio/audio.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import {HypnosisModule} from './hypnosis/hypnosis.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -28,9 +26,9 @@ import {HypnosisModule} from "./hypnosis/hypnosis.module";
     MatCardModule,
     MatSidenavModule,
     MatDividerModule,
-    HypnosisModule
+    HypnosisModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

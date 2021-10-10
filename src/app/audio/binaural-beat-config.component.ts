@@ -1,6 +1,11 @@
-import {Component} from "@angular/core";
-import {BinauralBeat, BinauralBeatConfig, BinauralFrequencyConfig, TrueRecursivePartial} from "./binaural";
-import {forEach, isNil, merge, omitBy, without} from "lodash-es";
+import {Component} from '@angular/core';
+import {
+  BinauralBeat,
+  BinauralBeatConfig,
+  BinauralFrequencyConfig,
+  TrueRecursivePartial,
+} from './binaural';
+import {isNil, merge, omitBy, without} from 'lodash-es';
 
 @Component({
   selector: 'binaural-beat-config',
@@ -13,11 +18,13 @@ export class BinauralBeatConfigComponent {
     {frequency: 'Alpha Wave', id: 'alpha', value: 10, min: 8, max: 12},
     {frequency: 'Delta Wave', id: 'delta', value: 6, min: 4, max: 7},
     {frequency: 'Theta Wave', id: 'theta', value: 2, min: 0.5, max: 4},
-  ]
-  frequenciesColumns = ['frequency', 'value']
+  ];
+
+  frequenciesColumns = ['frequency', 'value'];
 
   binaural?: BinauralBeat;
-  playing: 'play_arrow' | 'stop' = "play_arrow"
+
+  playing: 'play_arrow' | 'stop' = 'play_arrow';
 
   config: BinauralBeatConfig = {
     frequencies: [250, 200, 150, 110],
@@ -28,8 +35,8 @@ export class BinauralBeatConfigComponent {
       alpha: 10,
       delta: 6,
       theta: 2,
-    }
-  }
+    },
+  };
 
   private reset() {
     this.playPreview();

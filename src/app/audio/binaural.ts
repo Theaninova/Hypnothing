@@ -1,4 +1,4 @@
-import {zip, merge} from "lodash-es";
+import {zip, merge} from 'lodash-es';
 
 export type BinauralWave = number | keyof BinauralFrequencyConfig;
 
@@ -7,10 +7,10 @@ export type TrueRecursivePartial<T> = {
 };
 
 export interface BinauralFrequencyConfig {
-  beta: number,
-  alpha: number,
-  theta: number,
-  delta: number,
+  beta: number;
+  alpha: number;
+  theta: number;
+  delta: number;
 }
 
 export interface BinauralBeatConfig {
@@ -25,24 +25,32 @@ export interface BinauralBeatConfig {
  */
 export class BinauralBeat {
   private readonly context: AudioContext;
+
   private readonly gainConstantSourceNode: ConstantSourceNode;
+
   private readonly oscillators: [OscillatorNode, OscillatorNode][];
 
   /**
    * https://www.psychologytoday.com/us/basics/binaural-beats
    */
   private toBinauralFrequency(wave: BinauralWave) {
-    return typeof wave === 'number' ? wave : this.options.binauralFrequencyConfig[wave];
+    return typeof wave === 'number'
+      ? wave
+      : this.options.binauralFrequencyConfig[wave];
   }
 
   constructor(private options: BinauralBeatConfig) {
-    const binauralFrequency = this.toBinauralFrequency(options.binauralFrequency);
+    const binauralFrequency = this.toBinauralFrequency(
+      options.binauralFrequency,
+    );
 
     this.context = new AudioContext({
       latencyHint: 'interactive',
-      sampleRate: 48000,
+      sampleRate: 48_000,
     });
-    this.gainConstantSourceNode = new ConstantSourceNode(this.context, {offset: options.gain});
+    this.gainConstantSourceNode = new ConstantSourceNode(this.context, {
+      offset: options.gain,
+    });
 
     this.oscillators = this.options.frequencies.map(frequency => {
       const leftOscillator = new OscillatorNode(this.context, {
@@ -76,18 +84,27 @@ export class BinauralBeat {
       return [leftOscillator, rightOscillator];
     });
 
-    this.gainConstantSourceNode.start()
+    this.gainConstantSourceNode.start();
   }
 
   modify(options: TrueRecursivePartial<BinauralBeatConfig>, smooth = 0.5) {
-    this.options = merge(this.options, options)
-    const binauralFrequency = this.toBinauralFrequency(this.options.binauralFrequency);
+    this.options = merge(this.options, options);
+    const binauralFrequency = this.toBinauralFrequency(
+      this.options.binauralFrequency,
+    );
 
     // make sure changes are synced
     const currentTime = this.context.currentTime;
 
-    if (options.binauralFrequency || options.binauralFrequencyConfig || options.frequencies) {
-      for (const [frequency, oscillators] of zip(this.options.frequencies, this.oscillators)) {
+    if (
+      options.binauralFrequency ||
+      options.binauralFrequencyConfig ||
+      options.frequencies
+    ) {
+      for (const [frequency, oscillators] of zip(
+        this.options.frequencies,
+        this.oscillators,
+      )) {
         const [leftOscillator, rightOscillator] = oscillators!;
 
         leftOscillator.frequency.exponentialRampToValueAtTime(
@@ -102,7 +119,10 @@ export class BinauralBeat {
     }
 
     if (options.gain) {
-      this.gainConstantSourceNode.offset.exponentialRampToValueAtTime(options.gain, currentTime + smooth);
+      this.gainConstantSourceNode.offset.exponentialRampToValueAtTime(
+        options.gain,
+        currentTime + smooth,
+      );
     }
   }
 

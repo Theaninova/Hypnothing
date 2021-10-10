@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "lint": "ng lint",
+    "lint:fix": "eslint --fix -c .eslintrc.json --ignore-path .eslintignore --ext .ts,.html src/",
     "test": "ng test"
   },
   "private": true,
