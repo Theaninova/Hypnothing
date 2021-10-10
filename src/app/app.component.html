@@ -1,8 +1,15 @@
-<div>
-  Test
-</div>
 
-<mat-card style="width: fit-content">
-  <binaural-beat-config></binaural-beat-config>
-</mat-card>
 
+<mat-drawer-container>
+  <mat-drawer mode="side" opened>
+    <h1>Binaural Beat</h1>
+    <binaural-beat-config></binaural-beat-config>
+    <mat-divider></mat-divider>
+    <h1>Background Noise</h1>
+    <div>TODO;</div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <h1>Configure your Hypnosis</h1>
+    <hypnosis-configurator></hypnosis-configurator>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -9,6 +9,9 @@ import {MatSliderModule} from "@angular/material/slider";
 import {MatRadioModule} from "@angular/material/radio";
 import {AudioModule} from "./audio/audio.module";
 import {MatCardModule} from "@angular/material/card";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatDividerModule} from "@angular/material/divider";
+import {HypnosisModule} from "./hypnosis/hypnosis.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import {MatCardModule} from "@angular/material/card";
     MatSliderModule,
     MatRadioModule,
     AudioModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule,
+    MatDividerModule,
+    HypnosisModule
   ],
   providers: [],
   bootstrap: [AppComponent]

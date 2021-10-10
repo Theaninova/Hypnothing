@@ -1,54 +1,48 @@
-<h1>Binaural Beat Configuration</h1>
-
 <section>
-<mat-card class="mat-elevation-z0">
-  <mat-card-header>Test Your Configuration</mat-card-header>
-  <mat-card-actions>
-    <button mat-mini-fab color="primary" (click)="playPreview()">
-      <mat-icon>{{playing}}</mat-icon>
-    </button>
-    <mat-button-toggle-group #group="matButtonToggleGroup" value="theta"
-                             (change)="modify({binauralFrequency: $event.value})">
-      <mat-button-toggle value="beta">β</mat-button-toggle>
-      <mat-button-toggle value="alpha">α</mat-button-toggle>
-      <mat-button-toggle value="delta">δ</mat-button-toggle>
-      <mat-button-toggle value="theta">θ</mat-button-toggle>
-    </mat-button-toggle-group>
-    <mat-slider min="0" max="0.1" step="0.001" value="0.01"
-                (change)="modify({gain: $event.value})"></mat-slider>
-  </mat-card-actions>
-</mat-card>
+  <h2>Test Your Configuration</h2>
+  <button mat-mini-fab color="primary" (click)="playPreview()">
+    <mat-icon>{{playing}}</mat-icon>
+  </button>
+  <mat-button-toggle-group #group="matButtonToggleGroup" value="theta"
+                           (change)="modify({binauralFrequency: $event.value})">
+    <mat-button-toggle value="beta">β</mat-button-toggle>
+    <mat-button-toggle value="alpha">α</mat-button-toggle>
+    <mat-button-toggle value="delta">δ</mat-button-toggle>
+    <mat-button-toggle value="theta">θ</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-slider min="0" max="0.1" step="0.001" value="0.01"
+              (change)="modify({gain: $event.value})"></mat-slider>
 </section>
 <mat-divider></mat-divider>
 <section>
-<h2>Binaural Beat Frequencies</h2>
-<table mat-table [dataSource]="frequencies">
-  <ng-container matColumnDef="frequency">
-    <th mat-header-cell *matHeaderCellDef>Frequency Range</th>
-    <td mat-cell *matCellDef="let element">{{element.frequency}}</td>
-  </ng-container>
+  <h2>Binaural Beat Frequencies</h2>
+  <table mat-table [dataSource]="frequencies">
+    <ng-container matColumnDef="frequency">
+      <th mat-header-cell *matHeaderCellDef>Frequency Range</th>
+      <td mat-cell *matCellDef="let element">{{element.frequency}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef>Value</th>
-    <td mat-cell *matCellDef="let element">
-      <mat-slider
-        #slider
-        thumbLabel
-        tickInterval="0.1"
-        step="0.1"
-        [min]="element.min"
-        [max]="element.max"
-        aria-label="units"
-        (valueChange)="modifyWave(element.id, slider.value)"
-        [value]="element.value">
-      </mat-slider>
-      <label>{{slider.value}} Hz</label>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef>Value</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slider
+          #slider
+          thumbLabel
+          tickInterval="0.1"
+          step="0.1"
+          [min]="element.min"
+          [max]="element.max"
+          aria-label="units"
+          (valueChange)="modifyWave(element.id, slider.value)"
+          [value]="element.value">
+        </mat-slider>
+        <label>{{slider.value}} Hz</label>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="frequenciesColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: frequenciesColumns"></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="frequenciesColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: frequenciesColumns"></tr>
+  </table>
 </section>
 
 <mat-divider></mat-divider>
@@ -58,7 +52,7 @@
   <mat-list>
     <mat-list-item *ngFor="let frequency of config.frequencies; let i = index">
       <mat-slider #slider thumbLabel min="10" max="500" step="10" [value]="frequency"
-      (valueChange)="changeFrequency(i, $event)"></mat-slider>
+                  (valueChange)="changeFrequency(i, $event)"></mat-slider>
       <label>{{slider.value}} Hz</label>
       <button mat-icon-button (click)="removeFrequency(slider.value)">
         <mat-icon>
