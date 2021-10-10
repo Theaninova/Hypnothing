@@ -13,18 +13,22 @@ export interface BinauralFrequencyConfig {
   delta: number;
 }
 
-export interface BinauralBeatConfig {
+export interface BinauralBeatConfig<T extends AudioContext | OfflineAudioContext = AudioContext> {
   frequencies: number[];
   binauralFrequency: BinauralWave;
   gain: number;
   binauralFrequencyConfig: BinauralFrequencyConfig;
+  /**
+   * Provide an existing context or one for offline rendering
+   */
+  context?: T;
 }
 
 /**
  * Creates a binaural beat audio
  */
-export class BinauralBeat {
-  private readonly context: AudioContext;
+export class BinauralBeat<T extends AudioContext | OfflineAudioContext> {
+  private readonly context: T;
 
   private readonly gainConstantSourceNode: ConstantSourceNode;
 
@@ -39,15 +43,15 @@ export class BinauralBeat {
       : this.options.binauralFrequencyConfig[wave];
   }
 
-  constructor(private options: BinauralBeatConfig) {
+  constructor(private options: BinauralBeatConfig<T>) {
     const binauralFrequency = this.toBinauralFrequency(
       options.binauralFrequency,
     );
 
-    this.context = new AudioContext({
+    this.context = options.context ?? new AudioContext({
       latencyHint: 'interactive',
       sampleRate: 48_000,
-    });
+    }) as T;
     this.gainConstantSourceNode = new ConstantSourceNode(this.context, {
       offset: options.gain,
     });
@@ -126,8 +130,8 @@ export class BinauralBeat {
     }
   }
 
-  async pause() {
-    await this.context.suspend();
+  async pause(suspendTime: T extends OfflineAudioContext ? number : undefined) {
+    await this.context.suspend(suspendTime!);
   }
 
   async play() {
@@ -135,6 +139,8 @@ export class BinauralBeat {
   }
 
   async destroy() {
-    await this.context.close();
+    if (this.context instanceof AudioContext) {
+      await this.context.close();
+    }
   }
 }

@@ -4,9 +4,9 @@
     <mat-icon>{{ playing }}</mat-icon>
   </button>
   <mat-button-toggle-group style="margin-right: 8px"
-    #group="matButtonToggleGroup"
-    value="theta"
-    (change)="modify({binauralFrequency: $event.value})"
+                           #group="matButtonToggleGroup"
+                           value="theta"
+                           (change)="modify({binauralFrequency: $event.value})"
   >
     <mat-button-toggle value="beta">β</mat-button-toggle>
     <mat-button-toggle value="alpha">α</mat-button-toggle>
@@ -71,7 +71,7 @@
       ></mat-slider>
       <label>{{ slider.value }} Hz</label>
       <button mat-icon-button (click)="removeFrequency(slider.value)">
-        <mat-icon> delete </mat-icon>
+        <mat-icon> delete</mat-icon>
       </button>
     </mat-list-item>
     <button mat-list-item (click)="addFrequency()">
@@ -79,4 +79,28 @@
       Add
     </button>
   </mat-list>
+</section>
+
+<mat-divider></mat-divider>
+<section>
+  <h2>Render Binaural Beat</h2>
+
+  <form>
+    <mat-form-field floatLabel="always" style="margin-right: 8px">
+      <mat-label>Length</mat-label>
+      <input #renderLength matInput class="right-align" type="number" placeholder="30">
+      <span matSuffix>&nbsp;s</span>
+    </mat-form-field>
+    <mat-form-field floatLabel="always">
+      <mat-label>Sample Rate</mat-label>
+      <input #renderSampleRate matInput class="right-align" type="number" placeholder="44800">
+      <span matSuffix>&nbsp;Hz</span>
+    </mat-form-field>
+  </form>
+
+  <button mat-stroked-button color="accent"
+          (click)="render(renderLength.value, renderSampleRate.value, download)">
+    Render
+  </button>
+  <a #download>Download</a>
 </section>

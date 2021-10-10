@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {BrowserModule} from '@angular/platform-browser';
 import {AudioPlayerComponent} from "./audio-player.component";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [BinauralBeatConfigComponent, AudioPlayerComponent],
@@ -22,6 +24,8 @@ import {AudioPlayerComponent} from "./audio-player.component";
     MatListModule,
     MatSliderModule,
     MatTableModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
 })
 export class AudioModule {}

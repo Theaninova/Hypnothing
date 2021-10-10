@@ -6,6 +6,9 @@ import {
   TrueRecursivePartial,
 } from './binaural';
 import {isNil, merge, omitBy, without} from 'lodash-es';
+import {FormControl, Validators} from "@angular/forms";
+import {MatButton} from "@angular/material/button";
+import {bufferToWave} from "./wav";
 
 @Component({
   selector: 'binaural-beat-config',
@@ -20,9 +23,14 @@ export class BinauralBeatConfigComponent {
     {frequency: 'θ-Wave (Deep Sleep)', id: 'theta', value: 2, min: 0.5, max: 4},
   ];
 
+  renderLengthFormControl = new FormControl(30, [
+    Validators.required,
+    Validators.min(1),
+  ]);
+
   frequenciesColumns = ['frequency', 'value'];
 
-  binaural?: BinauralBeat;
+  binaural?: BinauralBeat<AudioContext>;
 
   playing: 'play_arrow' | 'stop' = 'play_arrow';
 
@@ -84,5 +92,22 @@ export class BinauralBeatConfigComponent {
     } else {
       this.binaural = new BinauralBeat(this.config);
     }
+  }
+
+  async render(length: string, sampleRate: string, button: HTMLAnchorElement) {
+    const len = length === '' ? 300_000 : Number.parseInt(length) * 10_000;
+    const rate = sampleRate === '' ? 44800 : Number.parseInt(sampleRate);
+    const context = new OfflineAudioContext(2, len, rate);
+    const binaural = new BinauralBeat({
+      ...this.config,
+      context,
+    });
+
+    const buffer = await context.startRendering();
+    const wav = bufferToWave(buffer, len);
+
+    button.href = window.URL.createObjectURL(wav);
+    button.download = 'binaural.wav';
+    button.dataset.downloadurl =  ['audio/wav', button.download, button.href].join(':');
   }
 }
