@@ -7,19 +7,23 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatSliderModule} from "@angular/material/slider";
 import {MatRadioModule} from "@angular/material/radio";
+import {AudioModule} from "./audio/audio.module";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatSelectModule,
-        MatCheckboxModule,
-        MatSliderModule,
-        MatRadioModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatSliderModule,
+    MatRadioModule,
+    AudioModule,
+    MatCardModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

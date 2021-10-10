@@ -1,27 +1,23 @@
-import {zip} from "lodash-es";
+import {zip, merge} from "lodash-es";
 
-export type BinauralWave = number | 'beta' | 'alpha' | 'theta' | 'delta';
+export type BinauralWave = number | keyof BinauralFrequencyConfig;
 
-export type TruePartial<T> = {
-  [P in keyof T]?: T[P] | null;
+export type TrueRecursivePartial<T> = {
+  [P in keyof T]?: TrueRecursivePartial<T[P]> | null;
 };
 
-/**
- * https://www.psychologytoday.com/us/basics/binaural-beats
- */
-function toBinauralFrequency(wave: BinauralWave) {
-  return typeof wave === 'number' ? wave : {
-    beta: 14,
-    alpha: 10,
-    theta: 4,
-    delta: 2,
-  }[wave];
+export interface BinauralFrequencyConfig {
+  beta: number,
+  alpha: number,
+  theta: number,
+  delta: number,
 }
 
 export interface BinauralBeatConfig {
   frequencies: number[];
   binauralFrequency: BinauralWave;
   gain: number;
+  binauralFrequencyConfig: BinauralFrequencyConfig;
 }
 
 /**
@@ -32,14 +28,15 @@ export class BinauralBeat {
   private readonly gainConstantSourceNode: ConstantSourceNode;
   private readonly oscillators: [OscillatorNode, OscillatorNode][];
 
-  private frequencies: number[];
-  private binauralWave: BinauralWave;
+  /**
+   * https://www.psychologytoday.com/us/basics/binaural-beats
+   */
+  private toBinauralFrequency(wave: BinauralWave) {
+    return typeof wave === 'number' ? wave : this.options.binauralFrequencyConfig[wave];
+  }
 
-  constructor(options: BinauralBeatConfig) {
-    this.frequencies = options.frequencies;
-    this.binauralWave = options.binauralFrequency;
-
-    const binauralFrequency = toBinauralFrequency(options.binauralFrequency);
+  constructor(private options: BinauralBeatConfig) {
+    const binauralFrequency = this.toBinauralFrequency(options.binauralFrequency);
 
     this.context = new AudioContext({
       latencyHint: 'interactive',
@@ -47,7 +44,7 @@ export class BinauralBeat {
     });
     this.gainConstantSourceNode = new ConstantSourceNode(this.context, {offset: options.gain});
 
-    this.oscillators = this.frequencies.map(frequency => {
+    this.oscillators = this.options.frequencies.map(frequency => {
       const leftOscillator = new OscillatorNode(this.context, {
         frequency: frequency - binauralFrequency / 2,
         type: 'sine',
@@ -82,25 +79,26 @@ export class BinauralBeat {
     this.gainConstantSourceNode.start()
   }
 
-  modify(options: TruePartial<BinauralBeatConfig>, smooth = 0.5) {
-    this.binauralWave = options.binauralFrequency ?? this.binauralWave;
-    const binauralFrequency = toBinauralFrequency(this.binauralWave);
-
-    this.frequencies = options.frequencies ?? this.frequencies;
+  modify(options: TrueRecursivePartial<BinauralBeatConfig>, smooth = 0.5) {
+    this.options = merge(this.options, options)
+    const binauralFrequency = this.toBinauralFrequency(this.options.binauralFrequency);
 
     // make sure changes are synced
     const currentTime = this.context.currentTime;
-    for (const [frequency, oscillators] of zip(this.frequencies, this.oscillators)) {
-      const [leftOscillator, rightOscillator] = oscillators!;
 
-      leftOscillator.frequency.exponentialRampToValueAtTime(
-        frequency! - binauralFrequency / 2,
-        currentTime + smooth,
-      );
-      rightOscillator.frequency.exponentialRampToValueAtTime(
-        frequency! + binauralFrequency / 2,
-        currentTime + smooth,
-      );
+    if (options.binauralFrequency || options.binauralFrequencyConfig || options.frequencies) {
+      for (const [frequency, oscillators] of zip(this.options.frequencies, this.oscillators)) {
+        const [leftOscillator, rightOscillator] = oscillators!;
+
+        leftOscillator.frequency.exponentialRampToValueAtTime(
+          frequency! - binauralFrequency / 2,
+          currentTime + smooth,
+        );
+        rightOscillator.frequency.exponentialRampToValueAtTime(
+          frequency! + binauralFrequency / 2,
+          currentTime + smooth,
+        );
+      }
     }
 
     if (options.gain) {
@@ -114,5 +112,9 @@ export class BinauralBeat {
 
   async play() {
     await this.context.resume();
+  }
+
+  async destroy() {
+    await this.context.close();
   }
 }

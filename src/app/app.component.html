@@ -1,19 +1,8 @@
 <div>
   Test
 </div>
-<mat-select aria-label="Induction">
-  Test
-</mat-select>
-<mat-checkbox aria-label="Some Checkbox" (change)="play($event.checked)">Play</mat-checkbox>
-<mat-slider #volumeElement min="0" max="0.1" step="0.001" value="0.01"
-            (change)="modify({gain: $event.value})"></mat-slider>
 
-<mat-radio-group (change)="modify({binauralFrequency: $event.value})">
-  <mat-radio-button
-    *ngFor="let wave of ['Beta', 'Alpha', 'Delta', 'Theta']"
-    [value]="wave.toLocaleLowerCase()">
-    <mat-label>{{wave}}</mat-label>
-  </mat-radio-button>
-</mat-radio-group>
+<mat-card style="width: fit-content">
+  <binaural-beat-config></binaural-beat-config>
+</mat-card>
 
-<audio #audioElement></audio>
