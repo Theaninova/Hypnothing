@@ -14,10 +14,10 @@ import {isNil, merge, omitBy, without} from 'lodash-es';
 })
 export class BinauralBeatConfigComponent {
   frequencies = [
-    {frequency: 'Beta Wave', id: 'beta', value: 14, min: 13, max: 16},
-    {frequency: 'Alpha Wave', id: 'alpha', value: 10, min: 8, max: 12},
-    {frequency: 'Delta Wave', id: 'delta', value: 6, min: 4, max: 7},
-    {frequency: 'Theta Wave', id: 'theta', value: 2, min: 0.5, max: 4},
+    {frequency: 'β-Wave (Alert)', id: 'beta', value: 14, min: 13, max: 16},
+    {frequency: 'α-Wave (Relaxed)', id: 'alpha', value: 10, min: 8, max: 12},
+    {frequency: 'δ-Wave (Light Sleep)', id: 'delta', value: 6, min: 4, max: 7},
+    {frequency: 'θ-Wave (Deep Sleep)', id: 'theta', value: 2, min: 0.5, max: 4},
   ];
 
   frequenciesColumns = ['frequency', 'value'];

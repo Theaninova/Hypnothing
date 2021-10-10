@@ -8,9 +8,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {BrowserModule} from '@angular/platform-browser';
+import {AudioPlayerComponent} from "./audio-player.component";
 
 @NgModule({
-  declarations: [BinauralBeatConfigComponent],
+  declarations: [BinauralBeatConfigComponent, AudioPlayerComponent],
   exports: [BinauralBeatConfigComponent],
   imports: [
     BrowserModule,

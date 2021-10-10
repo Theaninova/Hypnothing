@@ -1,9 +1,9 @@
 <section>
   <h2>Test Your Configuration</h2>
-  <button mat-mini-fab color="primary" (click)="playPreview()">
+  <button mat-icon-button color="primary" (click)="playPreview()" style="margin-right: 8px">
     <mat-icon>{{ playing }}</mat-icon>
   </button>
-  <mat-button-toggle-group
+  <mat-button-toggle-group style="margin-right: 8px"
     #group="matButtonToggleGroup"
     value="theta"
     (change)="modify({binauralFrequency: $event.value})"
