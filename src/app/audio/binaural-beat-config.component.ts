@@ -6,7 +6,6 @@ import {
   TrueRecursivePartial,
 } from './binaural';
 import {isNil, merge, omitBy, without} from 'lodash-es';
-import {FormControl, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {bufferToWave} from "./wav";
 
@@ -22,11 +21,6 @@ export class BinauralBeatConfigComponent {
     {frequency: 'δ-Wave (Light Sleep)', id: 'delta', value: 6, min: 4, max: 7},
     {frequency: 'θ-Wave (Deep Sleep)', id: 'theta', value: 2, min: 0.5, max: 4},
   ];
-
-  renderLengthFormControl = new FormControl(30, [
-    Validators.required,
-    Validators.min(1),
-  ]);
 
   frequenciesColumns = ['frequency', 'value'];
 
@@ -110,6 +104,8 @@ export class BinauralBeatConfigComponent {
 
     const buffer = await context.startRendering();
     const wav = bufferToWave(buffer, len);
+
+    await binaural.destroy();
 
     downloadLink.href = window.URL.createObjectURL(wav);
     downloadLink.download = 'binaural.wav';
