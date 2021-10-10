@@ -1,6 +1,14 @@
 # Hypnothing
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
+An Angular web application for modular hypnosis. Its main features are (or will be):
+
+* Procedural generation & configuration of the binaurals
+* User preferences for background noise and binaurals
+* Choosing inductions
+* Selectively enabling suggestions
+* Optionally loop, add waker, or aftercare
+* Translation support (if they are provided)
+* Effective search for everything powered by Elasticsearch
 
 ## Development server
 
