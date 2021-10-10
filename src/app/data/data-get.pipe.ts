@@ -1,32 +1,7 @@
 import {Pipe, PipeTransform} from "@angular/core";
 import {Author, Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
 import {DataProvider} from "./data.provider";
-import {HypnosisSafetyGuard} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety";
-import {HypnosisFile} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file";
-import {TranceInduction} from "@wulkanat/hypnothing-core/lib/trance/trance-induction";
-import {HypnosisSuggestion} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion";
-import {HypnosisTrigger} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger";
-import {HypnosisWaker} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker";
-import {HypnosisWarning} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-warning";
-
-export type SpecificHypnosisType<T> =
-  T extends 'author' ? Author :
-    T extends 'file' ? HypnosisFile :
-      T extends 'induction' ? TranceInduction :
-        T extends 'safety' ? HypnosisSafetyGuard :
-          T extends 'suggestion' ? HypnosisSuggestion :
-            T extends 'trigger' ? HypnosisTrigger :
-              T extends 'waker' ? HypnosisWaker :
-                T extends 'warning' ? HypnosisWarning : never;
-
-export type HypnosisTypeEnumerator = 'author'
-  | 'file'
-  | 'induction'
-  | 'safety'
-  | 'suggestion'
-  | 'trigger'
-  | 'waker'
-  | 'warning';
+import {HypnosisTypeEnumerator, SpecificHypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
 
 @Pipe({
   name: 'fetch',
