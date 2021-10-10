@@ -5,6 +5,15 @@
   Test
 </mat-select>
 <mat-checkbox aria-label="Some Checkbox" (change)="play($event.checked)">Play</mat-checkbox>
-<mat-slider #volumeElement min="0" max="0.1" step="0.001" value="0.01" (change)="changeGain($event.value)"></mat-slider>
+<mat-slider #volumeElement min="0" max="0.1" step="0.001" value="0.01"
+            (change)="modify({gain: $event.value})"></mat-slider>
+
+<mat-radio-group (change)="modify({binauralFrequency: $event.value})">
+  <mat-radio-button
+    *ngFor="let wave of ['Beta', 'Alpha', 'Delta', 'Theta']"
+    [value]="wave.toLocaleLowerCase()">
+    <mat-label>{{wave}}</mat-label>
+  </mat-radio-button>
+</mat-radio-group>
 
 <audio #audioElement></audio>

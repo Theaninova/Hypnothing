@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {BinauralBeat} from "./audio/binaural";
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {BinauralBeat, BinauralBeatConfig, TruePartial} from "./audio/binaural";
 
 @Component({
   selector: 'app-root',
@@ -10,19 +10,18 @@ export class AppComponent {
   @ViewChild('audioElement') audioElement!: ElementRef<HTMLAudioElement>;
   binaural?: BinauralBeat;
 
-  changeGain(gain: number | null) {
-    this.binaural?.setGain(gain!);
+  modify(options: TruePartial<BinauralBeatConfig>) {
+    this.binaural?.modify(options);
   }
 
   play(on: boolean) {
     if (on) {
       if (!this.binaural) {
-        this.binaural = new BinauralBeat([
-          [249, 251],
-          [199, 200],
-          [149, 151],
-          [109, 111],
-        ]);
+        this.binaural = new BinauralBeat({
+          frequencies: [250, 200, 150, 110],
+          binauralFrequency: 'delta',
+          gain: 0.2
+        });
       }
       this.binaural.play();
     } else {
