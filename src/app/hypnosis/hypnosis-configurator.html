@@ -7,27 +7,32 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Review Safeties & Warnings</ng-template>
-    <mat-accordion>
-      <mat-expansion-panel *ngFor="let safety of hypnosisFile.safeties">
-        <mat-expansion-panel-header>
+    <mat-accordion *ngIf="hypnosisFile | async as hypnosisFile">
+      <mat-expansion-panel *ngFor="let safety of hypnosisFile.safeties | fetchAll: 'safety'">
+        <mat-expansion-panel-header *ngIf="safety | async as safety; else loadingSafetyTitle">
           <mat-icon>support</mat-icon>
           {{safety.title}}
         </mat-expansion-panel-header>
+        <ng-template #loadingSafetyTitle>
+          <mat-expansion-panel-header>
+            <mat-icon>support</mat-icon>
+            <mat-spinner></mat-spinner>
+          </mat-expansion-panel-header>
+        </ng-template>
         <mat-panel-description>
           <hypnosis-safety [safety]="safety"></hypnosis-safety>
         </mat-panel-description>
       </mat-expansion-panel>
-
     </mat-accordion>
 
   </mat-step>
   <mat-step>
-    <form [formGroup]="suggestionsFormGroup">
+    <form [formGroup]="suggestionsFormGroup" *ngIf="suggestionsFormGroup | async as suggestionsFormGroup">
       <ng-template matStepLabel>Select Suggestions</ng-template>
 
-      <mat-accordion>
-        <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions">
-          <mat-expansion-panel-header>
+      <mat-accordion *ngIf="hypnosisFile | async as hypnosisFile">
+        <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions | fetchAll: 'suggestion'">
+          <mat-expansion-panel-header *ngIf="suggestion | async as suggestion">
             <mat-checkbox
               [formControlName]="suggestion.uuid"
               [disabled]="suggestion.isRequired"
@@ -41,8 +46,6 @@
           </mat-panel-description>
         </mat-expansion-panel>
       </mat-accordion>
-
-
     </form>
   </mat-step>
   <mat-step>

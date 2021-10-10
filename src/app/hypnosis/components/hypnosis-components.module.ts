@@ -12,16 +12,28 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
 import {HypnosisSafetyComponent} from "./hypnosis-safety.component";
+import {HypnosisFileComponent} from "./hypnosis-file.component";
+import {DataModule} from "../../data/data.module";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 /**
  * NOTE: NONE of the components contain the title to remain flexible
  */
 @NgModule({
-  imports: [BrowserModule, MarkdownModule, MatButtonToggleModule, MatCardModule, MatIconModule, MatGridListModule, MatChipsModule, MatTableModule, MatDividerModule],
-  declarations: [HypnosisSuggestionComponent, CreativeWorkComponent, AuthorComponent, HypnosisSafetyComponent],
+  imports: [BrowserModule, MarkdownModule, MatButtonToggleModule, MatCardModule, MatIconModule, MatGridListModule, MatChipsModule, MatTableModule, MatDividerModule, DataModule, MatProgressSpinnerModule],
+  declarations: [
+    HypnosisSuggestionComponent,
+    CreativeWorkComponent,
+    AuthorComponent,
+    HypnosisFileComponent,
+    HypnosisSafetyComponent
+  ],
   exports: [
     HypnosisSuggestionComponent,
-    HypnosisSafetyComponent
+    HypnosisSafetyComponent,
+    HypnosisFileComponent,
+    CreativeWorkComponent,
   ]
 })
-export class HypnosisComponentsModule {}
+export class HypnosisComponentsModule {
+}

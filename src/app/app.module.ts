@@ -13,6 +13,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {HypnosisModule} from './hypnosis/hypnosis.module';
 import {MarkdownModule} from "ngx-markdown";
+import {HypnosisComponentsModule} from "./hypnosis/components/hypnosis-components.module";
+import {DataModule} from "./data/data.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,8 @@ import {MarkdownModule} from "ngx-markdown";
     MatSelectModule,
     MatSidenavModule,
     MatSliderModule,
+    HypnosisComponentsModule,
+    DataModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,5 +7,5 @@ import {Author} from "@wulkanat/hypnothing-core/lib/schema.org";
   styleUrls: ['author.scss'],
 })
 export class AuthorComponent {
-  @Input() author!: Author;
+  @Input() author!: Promise<Author | undefined>;
 }

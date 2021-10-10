@@ -7,5 +7,5 @@ import {HypnosisSuggestion} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosi
   styleUrls: ['hypnosis-suggestion.scss'],
 })
 export class HypnosisSuggestionComponent {
-  @Input() suggestion!: HypnosisSuggestion
+  @Input() suggestion!: Promise<HypnosisSuggestion | undefined>
 }

@@ -1,9 +1,14 @@
 import {NgModule} from "@angular/core";
+import {FetchAllPipe, FetchPipe} from "./data-get.pipe";
 
-/**
- * TODO: do we need this?
- */
 @NgModule({
-  declarations: [],
+  declarations: [
+    FetchPipe,
+    FetchAllPipe
+  ],
+  exports: [
+    FetchPipe,
+    FetchAllPipe,
+  ],
 })
 export class DataModule {}

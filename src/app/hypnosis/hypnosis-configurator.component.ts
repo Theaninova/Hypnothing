@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HypnosisFile} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {keyBy, mapValues} from "lodash-es";
+import {fromPairs, keyBy, mapValues} from "lodash-es";
 import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
+import {DataProvider} from "../data/data.provider";
 
 export interface HypnosisFileConfiguration {
   includeBinaural: boolean;
@@ -19,16 +20,19 @@ export interface HypnosisFileConfiguration {
   styleUrls: ['hypnosis-configurator.scss'],
 })
 export class HypnosisConfiguratorComponent implements OnInit {
-  @Input() hypnosisFile!: HypnosisFile;
+  @Input() hypnosisFile!: Promise<HypnosisFile | undefined>;
 
-  suggestionsFormGroup!: FormGroup;
+  suggestionsFormGroup!: Promise<FormGroup>;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              readonly dataProvider: DataProvider) {
   }
 
   ngOnInit() {
-    this.suggestionsFormGroup = this.formBuilder.group(
-      mapValues(keyBy(this.hypnosisFile.suggestions, 'uuid'), _ => true)
-    )
+    this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>
+      this.formBuilder.group(
+        fromPairs((await this.hypnosisFile)!.suggestions.map(it => [it, true])),
+      )
+    );
   }
 }
