@@ -44,10 +44,37 @@ I could imagine versions with more effect or more permanence, as well as version
       description: 'If at any point the effects become too intense, you will instantly revert back to normal.',
       introductionSrc: 'TODO',
       reminderSrc: 'TODO',
+      tags: ['limiter']
+    },
+    {
+      title: 'Some other safety',
+      speaker: authorTheaSchoebl,
+      author: authorVincentVega,
+      uuid: 'safety_never_too_intense',
+      type: HypnosisType.SAFETY,
+      language: 'en',
+      translatedWorks: {},
+      description: 'If at any point the effects become too intense, you will instantly revert back to normal.',
+      introductionSrc: 'TODO',
+      reminderSrc: 'TODO',
+      tags: ['other', 'tags']
     }
   ],
   suggestions: [
-
+    {
+      title: 'Fall into Trance when you die',
+      description: `Makes you fall into a deep trance whenever you die`,
+      type: HypnosisType.SUGGESTION,
+      language: 'en',
+      translatedWorks: {
+        de: 'uwtuwutwi',
+        es: 'wjajjgag',
+      },
+      uuid: 'trance_when_you_die',
+      isRequired: false,
+      author: authorVincentVega,
+      speaker: authorTheaSchoebl,
+    }
   ],
   uuid: 'gamer_files_shooter', // TODO
   translatedWorks: {},

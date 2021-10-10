@@ -1,3 +1,50 @@
 <mat-vertical-stepper>
-  <mat-step> </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Choose your Induction</ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Choose a Trigger</ng-template>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Review Safeties</ng-template>
+      <div *ngFor="let safety of hypnosisFile.safeties" style="display: flex; flex-direction: column">
+        <mat-card>
+            <mat-card-title-group>
+              <mat-icon>support</mat-icon>
+              <mat-card-title>{{safety.title}}</mat-card-title>
+            </mat-card-title-group>
+          <mat-card-content markdown>
+            {{safety.description}}}
+          </mat-card-content>
+          <mat-card-actions>
+            <mat-chip-list>
+              <mat-chip *ngFor="let tag of safety.tags">{{tag}}</mat-chip>
+            </mat-chip-list>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+  </mat-step>
+  <mat-step>
+    <form [formGroup]="suggestionsFormGroup">
+      <ng-template matStepLabel>Select Suggestions</ng-template>
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions">
+          <mat-expansion-panel-header>
+            <mat-checkbox  [formControlName]="suggestion.uuid">
+              {{suggestion.title}}
+            </mat-checkbox>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+            <hypnosis-suggestion [suggestion]="suggestion"></hypnosis-suggestion>
+          </mat-panel-description>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Configure your Waking</ng-template>
+  </mat-step>
 </mat-vertical-stepper>
