@@ -29,10 +29,10 @@ export class HypnosisConfiguratorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>
+    this.suggestionsFormGroup = new Promise<FormGroup>(async resolve => resolve(
       this.formBuilder.group(
         fromPairs((await this.hypnosisFile)!.suggestions.map(it => [it, true])),
       )
-    );
+    ));
   }
 }
