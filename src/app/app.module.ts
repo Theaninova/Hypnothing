@@ -12,21 +12,23 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {HypnosisModule} from './hypnosis/hypnosis.module';
+import {MarkdownModule} from "ngx-markdown";
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatSliderModule,
-    MatRadioModule,
     AudioModule,
-    MatCardModule,
-    MatSidenavModule,
-    MatDividerModule,
+    BrowserAnimationsModule,
+    BrowserModule,
     HypnosisModule,
+    MarkdownModule.forRoot(),
+    MatCardModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

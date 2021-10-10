@@ -13,14 +13,14 @@ import {BrowserModule} from '@angular/platform-browser';
   declarations: [BinauralBeatConfigComponent],
   exports: [BinauralBeatConfigComponent],
   imports: [
+    BrowserModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatIconModule,
     MatListModule,
     MatSliderModule,
     MatTableModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatButtonToggleModule,
-    BrowserModule,
   ],
 })
 export class AudioModule {}
