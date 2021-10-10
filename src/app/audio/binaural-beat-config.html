@@ -98,9 +98,9 @@
     </mat-form-field>
   </form>
 
-  <button mat-stroked-button color="accent"
-          (click)="render(renderLength.value, renderSampleRate.value, download)">
-    Render
+  <button #downloadButton mat-stroked-button color="accent" style="margin-right: 8px"
+          (click)="render(renderLength.value, renderSampleRate.value, download, downloadButton)">
+    Render to WAV
   </button>
   <a #download>Download</a>
 </section>
