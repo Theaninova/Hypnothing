@@ -1,29 +1,37 @@
 <mat-vertical-stepper>
   <mat-step>
     <ng-template matStepLabel>Choose your Induction</ng-template>
-    <search
+    <hypnosis-search
       *ngIf="hypnosisFile | async as hypnosisFile"
       [forcedFilters]="{
-        speaker: hypnosisFile.speaker || hypnosisFile.author,
+        speaker: $any(hypnosisFile.speaker),
         language: hypnosisFile.language,
-        type: 'induction'
+        type: 'Induction'
       }"
-      [dropTarget]="inductionsList"
-    ></search>
-    <h2>Selected Inductions</h2>
-    <mat-list
-      cdkDropList
-      #inductionsList="cdkDropList"
-      [cdkDropListData]="inductions"
-      (cdkDropListDropped)="drop($event)"
+      (resultsChanged)="inductionResults = $event"
     >
-      <div class="drag-drop-list-item" cdkDrag *ngFor="let item of inductions" [cdkDragData]="item">
-        <hypnosis-list-item [item]="item"></hypnosis-list-item>
-      </div>
-    </mat-list>
+      <hypnosis-select-drag-list [items]="inductionResults" (selectionChanged)="inductions = $event">
+        <h2>Induction Selection</h2>
+      </hypnosis-select-drag-list>
+    </hypnosis-search>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Choose a Trigger</ng-template>
+    <hypnosis-search
+      *ngIf="hypnosisFile | async as hypnosisFile"
+      [forcedFilters]="{
+        speaker: $any(hypnosisFile.speaker),
+        language: hypnosisFile.language,
+        type: 'trigger'
+      }"
+      (resultsChanged)="triggerResults = $event"
+    >
+      <hypnosis-select-list
+        [items]="triggerResults"
+        [multiple]="false"
+        (selectionChanged)="trigger = $event[0]"
+      ></hypnosis-select-list>
+    </hypnosis-search>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Review Safeties & Warnings</ng-template>

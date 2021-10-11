@@ -1,0 +1,24 @@
+<mat-list
+  *ngIf="items | async as results"
+  cdkDropList
+  cdkDropListSortingDisabled
+  [cdkDropListConnectedTo]="targetList"
+  [cdkDropListData]="results"
+>
+  <div class="drag-drop-list-item" cdkDrag [cdkDragData]="item" *ngFor="let item of results">
+    <hypnosis-list-item [item]="item"></hypnosis-list-item>
+  </div>
+</mat-list>
+
+<ng-content></ng-content>
+
+<mat-list
+  cdkDropList
+  #targetList="cdkDropList"
+  [cdkDropListData]="targetItems"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div class="drag-drop-list-item" cdkDrag *ngFor="let item of targetItems" [cdkDragData]="item">
+    <hypnosis-list-item [item]="item"></hypnosis-list-item>
+  </div>
+</mat-list>

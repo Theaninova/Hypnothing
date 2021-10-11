@@ -12,7 +12,9 @@
         <mat-icon>{{ icon }}</mat-icon>
       </mat-chip-avatar>
       {{ filter.value | titlecase }}
-      <button matChipRemove><mat-icon>cancel</mat-icon></button>
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
     </mat-chip>
     <input
       type="search"
@@ -33,17 +35,8 @@
     <mat-icon>sort</mat-icon>
   </button>
 </mat-form-field>
+<mat-progress-bar mode="indeterminate" [style.opacity]="(results | async) ? 0 : 1"></mat-progress-bar>
 
-<mat-progress-bar mode="indeterminate" *ngIf="(results | async) === null"></mat-progress-bar>
-<mat-list
-  *ngIf="results | async as results"
-  cdkDropList
-  cdkDropListSortingDisabled
-  [cdkDropListConnectedTo]="dropTarget"
-  [cdkDropListData]="results"
->
-  <div class="drag-drop-list-item" cdkDrag [cdkDragData]="item" *ngFor="let item of results">
-    <hypnosis-list-item [item]="item"></hypnosis-list-item>
-  </div>
-</mat-list>
-<mat-paginator> </mat-paginator>
+<ng-content></ng-content>
+
+<mat-paginator [length]="(results | async)?.length"></mat-paginator>

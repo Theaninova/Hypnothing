@@ -1,20 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CdkDrag, CdkDropList} from '@angular/cdk/drag-drop';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataProvider} from '../data.provider';
 import {merge} from 'lodash-es';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 @Component({
-  selector: 'search',
+  selector: 'hypnosis-search',
   templateUrl: 'search.html',
-  styleUrls: ['search.scss', '../../util/drag-drop-list.scss'],
+  styleUrls: ['search.scss'],
 })
 export class SearchComponent implements OnInit {
   @Input() forcedFilters: Record<string, string> = {};
 
   @Input() filters: Record<string, string> = {};
 
-  @Input() dropTarget: CdkDropList | CdkDropList[] = [];
+  @Output() resultsChanged = new EventEmitter();
 
   results!: Promise<HypnosisThing[]>;
 
@@ -27,6 +26,7 @@ export class SearchComponent implements OnInit {
   };
 
   async ngOnInit() {
+    console.log(JSON.stringify(this.forcedFilters));
     await this.search();
   }
 
@@ -35,8 +35,6 @@ export class SearchComponent implements OnInit {
       filters: merge(this.forcedFilters, this.filters),
     });
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore TODO
-    this.dropListItems = (await this.results).map(item => item.title);
+    this.resultsChanged.emit(this.results);
   }
 }

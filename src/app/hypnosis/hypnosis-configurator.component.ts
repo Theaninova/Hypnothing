@@ -3,11 +3,6 @@ import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {fromPairs} from 'lodash-es';
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {
-  CdkDragDrop,
-  copyArrayItem,
-  moveItemInArray,
-} from '@angular/cdk/drag-drop';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export interface HypnosisFileConfiguration {
@@ -22,33 +17,22 @@ export interface HypnosisFileConfiguration {
 @Component({
   selector: 'hypnosis-configurator',
   templateUrl: 'hypnosis-configurator.html',
-  styleUrls: ['hypnosis-configurator.scss', '../util/drag-drop-list.scss'],
+  styleUrls: ['hypnosis-configurator.scss'],
 })
 export class HypnosisConfiguratorComponent implements OnInit {
   @Input() hypnosisFile!: Promise<HypnosisFile | undefined>;
 
   suggestionsFormGroup!: Promise<FormGroup>;
 
+  inductionResults!: Promise<HypnosisThing[]>;
+
   inductions: HypnosisThing[] = [];
 
-  constructor(private formBuilder: FormBuilder) {}
+  triggerResults!: Promise<HypnosisThing[]>;
 
-  drop(event: CdkDragDrop<HypnosisThing[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    } else {
-      copyArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
-  }
+  trigger?: HypnosisThing;
+
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>
@@ -60,5 +44,9 @@ export class HypnosisConfiguratorComponent implements OnInit {
         ),
       ),
     );
+  }
+
+  log(it: unknown) {
+    console.log(it);
   }
 }

@@ -11,10 +11,22 @@ import {BrowserModule} from '@angular/platform-browser';
 import {UtilModule} from '../../util/util.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ListItemsModule} from '../../hypnosis/components/list-items/list-items.module';
+import {HypnosisListComponent} from './hypnosis-list.component';
+import {HypnosisSelectDragListComponent} from './hypnosis-select-drag-list.component';
+import {HypnosisSelectListComponent} from './hypnosis-select-list.component';
 
 @NgModule({
-  declarations: [SearchComponent],
-  exports: [SearchComponent],
+  declarations: [
+    SearchComponent,
+    HypnosisListComponent,
+    HypnosisSelectDragListComponent,
+    HypnosisSelectListComponent,
+  ],
+  exports: [
+    SearchComponent,
+    HypnosisSelectDragListComponent,
+    HypnosisSelectListComponent,
+  ],
   imports: [
     MatPaginatorModule,
     MatListModule,

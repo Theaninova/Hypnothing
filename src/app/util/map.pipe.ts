@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import {entries} from 'lodash-es';
 
 @Pipe({
   name: 'map',
@@ -6,7 +7,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class MapPipe implements PipeTransform {
   transform<T>(map: Record<string, T>): {key: string; value: T}[] {
-    return Object.entries(map).map(([key, value]) => ({
+    return entries(map).map(([key, value]) => ({
       key,
       value,
     }));
