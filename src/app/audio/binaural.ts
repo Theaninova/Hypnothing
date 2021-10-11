@@ -13,7 +13,9 @@ export interface BinauralFrequencyConfig {
   delta: number;
 }
 
-export interface BinauralBeatConfig<T extends AudioContext | OfflineAudioContext = AudioContext> {
+export interface BinauralBeatConfig<
+  T extends AudioContext | OfflineAudioContext = AudioContext,
+> {
   frequencies: number[];
   binauralFrequency: BinauralWave;
   gain: number;
@@ -48,10 +50,12 @@ export class BinauralBeat<T extends AudioContext | OfflineAudioContext> {
       options.binauralFrequency,
     );
 
-    this.context = options.context ?? new AudioContext({
-      latencyHint: 'interactive',
-      sampleRate: 48_000,
-    }) as T;
+    this.context =
+      options.context ??
+      (new AudioContext({
+        latencyHint: 'interactive',
+        sampleRate: 48_000,
+      }) as T);
     this.gainConstantSourceNode = new ConstantSourceNode(this.context, {
       offset: options.gain,
     });
@@ -131,6 +135,7 @@ export class BinauralBeat<T extends AudioContext | OfflineAudioContext> {
   }
 
   async pause(suspendTime: T extends OfflineAudioContext ? number : undefined) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     await this.context.suspend(suspendTime!);
   }
 

@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {CreativeWork} from "@wulkanat/hypnothing-core/lib/schema.org";
+import {Component, Input} from '@angular/core';
+import {CreativeWork} from '@wulkanat/hypnothing-core/lib/schema.org';
 
 @Component({
   selector: 'creative-work',
@@ -8,5 +8,6 @@ import {CreativeWork} from "@wulkanat/hypnothing-core/lib/schema.org";
 })
 export class CreativeWorkComponent {
   @Input() creativeWork!: Promise<CreativeWork | undefined>;
-  @Input() includeTitle: boolean = true;
+
+  @Input() includeTitle = true;
 }

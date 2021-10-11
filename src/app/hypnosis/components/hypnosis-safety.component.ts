@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {HypnosisSafetyGuard} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety";
+import {Component, Input} from '@angular/core';
+import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety';
 
 @Component({
   selector: 'hypnosis-safety',
@@ -8,5 +8,6 @@ import {HypnosisSafetyGuard} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnos
 })
 export class HypnosisSafetyComponent {
   @Input() safety!: Promise<HypnosisSafetyGuard | undefined>;
+
   @Input() showTitle = true;
 }

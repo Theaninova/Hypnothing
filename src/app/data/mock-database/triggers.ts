@@ -1,6 +1,6 @@
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisTrigger} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
   'trigger:rest_of_the_day:theania:en': {
@@ -16,5 +16,5 @@ export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
     triggerType: 'time limited',
     reminderSrc: 'TODO', // TODO
     introductionSrc: 'TODO', // TODO
-  }
-}
+  },
+};

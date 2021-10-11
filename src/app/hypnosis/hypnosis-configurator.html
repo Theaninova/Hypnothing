@@ -11,7 +11,7 @@
       <mat-expansion-panel *ngFor="let safety of hypnosisFile.safeties | fetchAll: 'safety'">
         <mat-expansion-panel-header *ngIf="safety | async as safety; else loadingSafetyTitle">
           <mat-icon>support</mat-icon>
-          {{safety.title}}
+          {{ safety.title }}
         </mat-expansion-panel-header>
         <ng-template #loadingSafetyTitle>
           <mat-expansion-panel-header>
@@ -24,7 +24,6 @@
         </mat-panel-description>
       </mat-expansion-panel>
     </mat-accordion>
-
   </mat-step>
   <mat-step>
     <form [formGroup]="suggestionsFormGroup" *ngIf="suggestionsFormGroup | async as suggestionsFormGroup">
@@ -38,7 +37,7 @@
               [disabled]="suggestion.isRequired"
               (click)="$event.stopPropagation()"
             >
-              {{suggestion.title}}
+              {{ suggestion.title }}
             </mat-checkbox>
           </mat-expansion-panel-header>
           <mat-panel-description>

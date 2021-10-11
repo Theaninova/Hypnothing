@@ -1,6 +1,6 @@
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisWaker} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisWaker} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const WAKERS: Record<Uuid, HypnosisWaker> = {
   'waker:count_up_long:theania:en': {
@@ -11,6 +11,6 @@ export const WAKERS: Record<Uuid, HypnosisWaker> = {
     speaker: 'author:theania',
     author: 'author:vive',
     type: HypnosisType.WAKER,
-    src: 'TODO' // TODO
-  }
-}
+    src: 'TODO', // TODO
+  },
+};

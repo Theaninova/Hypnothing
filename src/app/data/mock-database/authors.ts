@@ -1,5 +1,5 @@
-import {Author, Gender, Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Author, Gender, Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const AUTHORS: Record<Uuid, Author> = {
   'author:theania': {
@@ -17,5 +17,5 @@ export const AUTHORS: Record<Uuid, Author> = {
     gender: Gender.Male,
     type: HypnosisType.AUTHOR,
     uuid: 'author:vive',
-  }
-}
+  },
+};

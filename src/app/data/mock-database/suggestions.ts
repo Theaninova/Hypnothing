@@ -1,6 +1,6 @@
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisSuggestion} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
   'suggestion:trance_when_you_die:theania:en': {
@@ -12,7 +12,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
       overviewIntroductionSrc: 'TODO', // TODO
       shortSrc: 'TODO', // TODO
       longSrc: 'TODO', // TODO
-      summarySrc: 'TODO' // TODO
+      summarySrc: 'TODO', // TODO
     },
     type: HypnosisType.SUGGESTION,
     language: 'en',
@@ -34,7 +34,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
       overviewIntroductionSrc: 'TODO', // TODO
       shortSrc: 'TODO', // TODO
       longSrc: 'TODO', // TODO
-      summarySrc: 'TODO' // TODO
+      summarySrc: 'TODO', // TODO
     },
     type: HypnosisType.SUGGESTION,
     language: 'en',
@@ -53,7 +53,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
       overviewIntroductionSrc: 'TODO', // TODO
       shortSrc: 'TODO', // TODO
       longSrc: 'TODO', // TODO
-      summarySrc: 'TODO' // TODO
+      summarySrc: 'TODO', // TODO
     },
     type: HypnosisType.SUGGESTION,
     language: 'en',
@@ -72,7 +72,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
       overviewIntroductionSrc: 'TODO', // TODO
       shortSrc: 'TODO', // TODO
       longSrc: 'TODO', // TODO
-      summarySrc: 'TODO' // TODO
+      summarySrc: 'TODO', // TODO
     },
     type: HypnosisType.SUGGESTION,
     language: 'en',
@@ -91,7 +91,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
       overviewIntroductionSrc: 'TODO', // TODO
       shortSrc: 'TODO', // TODO
       longSrc: 'TODO', // TODO
-      summarySrc: 'TODO' // TODO
+      summarySrc: 'TODO', // TODO
     },
     type: HypnosisType.SUGGESTION,
     language: 'en',
@@ -100,5 +100,5 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     isRequired: false,
     author: 'author:vive',
     speaker: 'author:theania',
-  }
+  },
 };

@@ -60,6 +60,7 @@
         "jsdoc/require-param-type": "off",
         "jsdoc/require-returns-type": "off",
 
+        "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-unused-vars": [
           "error",

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file'
+import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 
 @Component({
   selector: 'hypnosis-file',

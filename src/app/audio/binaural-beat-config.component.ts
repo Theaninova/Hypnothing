@@ -6,8 +6,8 @@ import {
   TrueRecursivePartial,
 } from './binaural';
 import {isNil, merge, omitBy, without} from 'lodash-es';
-import {MatButton} from "@angular/material/button";
-import {bufferToWave} from "./wav";
+import {MatButton} from '@angular/material/button';
+import {bufferToWave} from './wav';
 
 @Component({
   selector: 'binaural-beat-config',
@@ -88,28 +88,37 @@ export class BinauralBeatConfigComponent {
     }
   }
 
-  async render(length: string, sampleRate: string, downloadLink: HTMLAnchorElement, button: MatButton) {
+  async render(
+    length: string,
+    sampleRate: string,
+    downloadLink: HTMLAnchorElement,
+    button: MatButton,
+  ) {
     button.disabled = true;
     downloadLink.href = '';
     downloadLink.download = '';
     delete downloadLink.dataset.downloadUrl;
 
-    const len = length === '' ? 300_000 : Number.parseInt(length) * 10_000;
-    const rate = sampleRate === '' ? 44800 : Number.parseInt(sampleRate);
-    const context = new OfflineAudioContext(2, len, rate);
+    const length_ = length === '' ? 300_000 : Number.parseInt(length) * 10_000;
+    const rate = sampleRate === '' ? 44_800 : Number.parseInt(sampleRate);
+    const context = new OfflineAudioContext(2, length_, rate);
     const binaural = new BinauralBeat({
       ...this.config,
       context,
     });
 
     const buffer = await context.startRendering();
-    const wav = bufferToWave(buffer, len);
+    const wav = bufferToWave(buffer, length_);
 
     await binaural.destroy();
 
     downloadLink.href = window.URL.createObjectURL(wav);
     downloadLink.download = 'binaural.wav';
-    downloadLink.dataset.downloadurl =  ['audio/wav', downloadLink.download, downloadLink.href].join(':');
+    downloadLink.dataset.downloadurl = [
+      'audio/wav',
+      downloadLink.download,
+      downloadLink.href,
+    ].join(':');
 
     button.disabled = false;
   }

@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {HypnosisSuggestion} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion";
+import {Component, Input} from '@angular/core';
+import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
 
 @Component({
   selector: 'hypnosis-suggestion',
@@ -7,5 +7,5 @@ import {HypnosisSuggestion} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosi
   styleUrls: ['hypnosis-suggestion.scss'],
 })
 export class HypnosisSuggestionComponent {
-  @Input() suggestion!: Promise<HypnosisSuggestion | undefined>
+  @Input() suggestion!: Promise<HypnosisSuggestion | undefined>;
 }

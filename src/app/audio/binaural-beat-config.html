@@ -3,10 +3,11 @@
   <button mat-icon-button color="primary" (click)="playPreview()" style="margin-right: 8px">
     <mat-icon>{{ playing }}</mat-icon>
   </button>
-  <mat-button-toggle-group style="margin-right: 8px"
-                           #group="matButtonToggleGroup"
-                           value="theta"
-                           (change)="modify({binauralFrequency: $event.value})"
+  <mat-button-toggle-group
+    style="margin-right: 8px"
+    #group="matButtonToggleGroup"
+    value="theta"
+    (change)="modify({binauralFrequency: $event.value})"
   >
     <mat-button-toggle value="beta">β</mat-button-toggle>
     <mat-button-toggle value="alpha">α</mat-button-toggle>
@@ -88,18 +89,23 @@
   <form>
     <mat-form-field floatLabel="always" style="margin-right: 8px">
       <mat-label>Length</mat-label>
-      <input #renderLength matInput class="right-align" type="number" placeholder="30">
+      <input #renderLength matInput class="right-align" type="number" placeholder="30" />
       <span matSuffix>&nbsp;s</span>
     </mat-form-field>
     <mat-form-field floatLabel="always">
       <mat-label>Sample Rate</mat-label>
-      <input #renderSampleRate matInput class="right-align" type="number" placeholder="44800">
+      <input #renderSampleRate matInput class="right-align" type="number" placeholder="44800" />
       <span matSuffix>&nbsp;Hz</span>
     </mat-form-field>
   </form>
 
-  <button #downloadButton mat-stroked-button color="accent" style="margin-right: 8px"
-          (click)="render(renderLength.value, renderSampleRate.value, download, downloadButton)">
+  <button
+    #downloadButton
+    mat-stroked-button
+    color="accent"
+    style="margin-right: 8px"
+    (click)="render(renderLength.value, renderSampleRate.value, download, downloadButton)"
+  >
     Render to WAV
   </button>
   <a #download>Download</a>

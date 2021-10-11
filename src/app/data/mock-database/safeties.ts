@@ -1,6 +1,6 @@
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisSafetyGuard} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
   'safety:revert_if_too_intense:theania:en': {
@@ -12,10 +12,11 @@ export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
     type: HypnosisType.SAFETY,
     language: 'en',
     translatedWorks: {},
-    description: 'If at any point the effects become too intense, you will instantly revert back to normal.',
+    description:
+      'If at any point the effects become too intense, you will instantly revert back to normal.',
     introductionSrc: 'TODO',
     reminderSrc: 'TODO',
-    tags: ['limiter']
+    tags: ['limiter'],
   },
   'safety:some_other_safety:theania:en': {
     title: 'Some other safety',
@@ -26,9 +27,10 @@ export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
     type: HypnosisType.SAFETY,
     language: 'en',
     translatedWorks: {},
-    description: 'If at any point the effects become too intense, you will instantly revert back to normal.',
+    description:
+      'If at any point the effects become too intense, you will instantly revert back to normal.',
     introductionSrc: 'TODO',
     reminderSrc: 'TODO',
-    tags: ['other', 'tags']
-  }
+    tags: ['other', 'tags'],
+  },
 };

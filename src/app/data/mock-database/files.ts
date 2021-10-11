@@ -1,6 +1,6 @@
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisFile} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const FILES: Record<Uuid, HypnosisFile> = {
   'file:gamer_files_shooter:theania:en': {
@@ -19,9 +19,7 @@ I could imagine versions with more effect or more permanence, as well as version
     overviewSrc: 'TODO', // TODO
     type: HypnosisType.FILE,
     preferredTranceDepth: 2,
-    warnings: [
-      'warning:dummy',
-    ],
+    warnings: ['warning:dummy'],
     safeties: [
       'safety:revert_if_too_intense:theania:en',
       'safety:some_other_safety:theania:en',
@@ -35,5 +33,5 @@ I could imagine versions with more effect or more permanence, as well as version
     ],
     uuid: 'file:gamer_files_shooter:theania:en',
     translatedWorks: {},
-  }
-}
+  },
+};

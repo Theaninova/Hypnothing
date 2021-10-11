@@ -1,21 +1,20 @@
 import {NgModule} from '@angular/core';
 import {HypnosisConfiguratorComponent} from './hypnosis-configurator.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import {HypnosisFileComponent} from './components/hypnosis-file.component';
-import {MarkdownModule} from "ngx-markdown";
-import {MatDividerModule} from "@angular/material/divider";
-import {MatIconModule} from "@angular/material/icon";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {BrowserModule} from "@angular/platform-browser";
-import {MatListModule} from "@angular/material/list";
-import {MatCardModule} from "@angular/material/card";
-import {MatChipsModule} from "@angular/material/chips";
-import {ReactiveFormsModule} from "@angular/forms";
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatExpansionModule} from "@angular/material/expansion";
-import {HypnosisComponentsModule} from "./components/hypnosis-components.module";
-import {DataModule} from "../data/data.module";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MarkdownModule} from 'ngx-markdown';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {BrowserModule} from '@angular/platform-browser';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {HypnosisComponentsModule} from './components/hypnosis-components.module';
+import {DataModule} from '../data/data.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -33,14 +32,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatExpansionModule,
     HypnosisComponentsModule,
     DataModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
-  exports: [
-    HypnosisConfiguratorComponent,
-  ],
-  declarations: [
-    HypnosisConfiguratorComponent,
-  ],
+  exports: [HypnosisConfiguratorComponent],
+  declarations: [HypnosisConfiguratorComponent],
 })
-export class HypnosisModule {
-}
+export class HypnosisModule {}

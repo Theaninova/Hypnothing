@@ -1,6 +1,6 @@
-import {Component, Input, Optional} from "@angular/core";
-import {HypnosisFile} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file";
-import {BinauralBeatConfig} from "./binaural";
+import {Component, Input, Optional} from '@angular/core';
+import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
+import {BinauralBeatConfig} from './binaural';
 
 @Component({
   selector: 'audio-player',
@@ -9,7 +9,6 @@ import {BinauralBeatConfig} from "./binaural";
 })
 export class AudioPlayerComponent {
   @Input() hypnosisFile!: HypnosisFile;
+
   @Optional() @Input() binauralConfig?: BinauralBeatConfig;
-
-
 }

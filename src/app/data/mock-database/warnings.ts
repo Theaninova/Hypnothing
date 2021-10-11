@@ -1,6 +1,6 @@
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisWarning} from "@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-warning";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisWarning} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-warning';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const WARNINGS: Record<Uuid, HypnosisWarning> = {
   'warning:dummy': {
@@ -12,5 +12,5 @@ export const WARNINGS: Record<Uuid, HypnosisWarning> = {
     language: 'en',
     translatedWorks: {},
     type: HypnosisType.WARNING,
-  }
-}
+  },
+};

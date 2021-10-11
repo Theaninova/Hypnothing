@@ -1,5 +1,5 @@
 <div *ngIf="creativeWork | async as creativeWork; else loading">
-  <h1 *ngIf="includeTitle">{{creativeWork.title}}</h1>
+  <h1 *ngIf="includeTitle">{{ creativeWork.title }}</h1>
 
   <markdown [data]="creativeWork.description"></markdown>
 
@@ -7,11 +7,15 @@
 
   <h3>Available in</h3>
   <mat-button-toggle-group [value]="creativeWork.language" disabled>
-    <mat-button-toggle [value]="creativeWork.language">{{creativeWork.language.toUpperCase()}}</mat-button-toggle>
-    <mat-button-toggle *ngFor="let lang of creativeWork.translatedWorks | keyvalue"
-                       [value]="lang.key">{{lang.key.toUpperCase()}}</mat-button-toggle>
-  </mat-button-toggle-group
-  >
+    <mat-button-toggle [value]="creativeWork.language">{{
+      creativeWork.language.toUpperCase()
+    }}</mat-button-toggle>
+    <mat-button-toggle
+      *ngFor="let lang of $any(creativeWork.translatedWorks) | keyvalue"
+      [value]="lang.key"
+      >{{ lang.key.toUpperCase() }}</mat-button-toggle
+    >
+  </mat-button-toggle-group>
 
   <table mat-table [dataSource]="[creativeWork]">
     <ng-container matColumnDef="author">
@@ -29,7 +33,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="['speaker', 'author']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['speaker', 'author'];"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['speaker', 'author']"></tr>
   </table>
 </div>
 <ng-template #loading>

@@ -1,12 +1,12 @@
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
-import {AUTHORS} from "./authors";
-import {SUGGESTIONS} from "./suggestions";
-import {SAFETIES} from "./safeties";
-import {FILES} from "./files";
-import {TRIGGERS} from "./triggers";
-import {INDUCTIONS} from "./inductions";
-import {WARNINGS} from "./warnings";
-import {WAKERS} from "./wakers";
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {AUTHORS} from './authors';
+import {SUGGESTIONS} from './suggestions';
+import {SAFETIES} from './safeties';
+import {FILES} from './files';
+import {TRIGGERS} from './triggers';
+import {INDUCTIONS} from './inductions';
+import {WARNINGS} from './warnings';
+import {WAKERS} from './wakers';
 
 export const MOCK_DATABASE = {
   [HypnosisType.AUTHOR]: AUTHORS,
@@ -17,4 +17,4 @@ export const MOCK_DATABASE = {
   [HypnosisType.INDUCTION]: INDUCTIONS,
   [HypnosisType.WARNING]: WARNINGS,
   [HypnosisType.WAKER]: WAKERS,
-}
+};

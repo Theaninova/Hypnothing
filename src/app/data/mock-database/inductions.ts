@@ -1,7 +1,10 @@
-import {TranceInduction} from "@wulkanat/hypnothing-core/lib/trance/trance-induction";
-import {Uuid} from "@wulkanat/hypnothing-core/lib/schema.org";
-import {HypnosisType} from "@wulkanat/hypnothing-core/lib/hypnosis";
-import {BinauralWaveChoice, VolumeChoice} from "@wulkanat/hypnothing-core/lib/audio";
+import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
+import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {
+  BinauralWaveChoice,
+  VolumeChoice,
+} from '@wulkanat/hypnothing-core/lib/audio';
 
 export const INDUCTIONS: Record<Uuid, TranceInduction> = {
   'induction:mind_melt:theania:en': {
@@ -23,15 +26,15 @@ export const INDUCTIONS: Record<Uuid, TranceInduction> = {
         value: {
           volume: VolumeChoice.INHERIT,
           wave: BinauralWaveChoice.THETA,
-        }
-      }
+        },
+      },
     ],
     noiseKeyframes: [
       {
         at: '00:00',
         in: 10,
         value: VolumeChoice.INHERIT,
-      }
-    ]
-  }
-}
+      },
+    ],
+  },
+};
