@@ -15,6 +15,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {HypnosisComponentsModule} from './components/hypnosis-components.module';
 import {DataModule} from '../data/data.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {SearchModule} from '../data/search/search.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -33,6 +35,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     HypnosisComponentsModule,
     DataModule,
     MatProgressSpinnerModule,
+    SearchModule,
+    DragDropModule,
   ],
   exports: [HypnosisConfiguratorComponent],
   declarations: [HypnosisConfiguratorComponent],

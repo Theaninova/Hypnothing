@@ -1,6 +1,24 @@
 <mat-vertical-stepper>
   <mat-step>
     <ng-template matStepLabel>Choose your Induction</ng-template>
+    <search
+      *ngIf="hypnosisFile | async as hypnosisFile"
+      [forcedFilters]="{
+        speaker: hypnosisFile.speaker || hypnosisFile.author,
+        language: hypnosisFile.language,
+        type: 'induction'
+      }"
+      [dropTarget]="inductionsList"
+    ></search>
+    <h2>Selected Inductions</h2>
+    <mat-list
+      cdkDropList
+      #inductionsList="cdkDropList"
+      [cdkDropListData]="inductions"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <mat-list-item cdkDrag *ngFor="let item of inductions" [cdkDragData]="item">{{ item }}</mat-list-item>
+    </mat-list>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Choose a Trigger</ng-template>

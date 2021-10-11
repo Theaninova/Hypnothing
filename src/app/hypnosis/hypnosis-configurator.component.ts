@@ -3,6 +3,11 @@ import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {fromPairs} from 'lodash-es';
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {
+  CdkDragDrop,
+  copyArrayItem,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 
 export interface HypnosisFileConfiguration {
   includeBinaural: boolean;
@@ -23,7 +28,26 @@ export class HypnosisConfiguratorComponent implements OnInit {
 
   suggestionsFormGroup!: Promise<FormGroup>;
 
+  inductions: Uuid[] = [];
+
   constructor(private formBuilder: FormBuilder) {}
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    } else {
+      copyArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 
   ngOnInit() {
     this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>

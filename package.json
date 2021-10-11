@@ -22,7 +22,7 @@
     "@angular/platform-browser": "12.2.9",
     "@angular/platform-browser-dynamic": "12.2.9",
     "@angular/router": "12.2.9",
-    "@wulkanat/hypnothing-core": "1.4.0",
+    "@wulkanat/hypnothing-core": "1.4.1",
     "ngx-markdown": "12.0.1",
     "audio-decode": "1.4.0",
     "lodash-es": "4.17.21",

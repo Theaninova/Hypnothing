@@ -11,6 +11,7 @@ export const WAKERS: Record<Uuid, HypnosisWaker> = {
     speaker: 'author:theania',
     author: 'author:vive',
     type: HypnosisType.WAKER,
+    uuid: 'waker:count_up_long:theania:en',
     src: 'TODO', // TODO
   },
 };

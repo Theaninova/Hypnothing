@@ -1,0 +1,46 @@
+<mat-form-field appearance="outline" style="width: 100%">
+  <mat-label>Search</mat-label>
+  <mat-chip-list #filterChips>
+    <mat-chip disabled *ngFor="let filter of forcedFilters | map">
+      <mat-chip-avatar *ngIf="fieldIconMap[filter.key] as icon">
+        <mat-icon>{{ icon }}</mat-icon>
+      </mat-chip-avatar>
+      {{ filter.value | titlecase }}
+    </mat-chip>
+    <mat-chip *ngFor="let filter of filters | map">
+      <mat-chip-avatar *ngIf="fieldIconMap[filter.key] as icon">
+        <mat-icon>{{ icon }}</mat-icon>
+      </mat-chip-avatar>
+      {{ filter.value | titlecase }}
+      <button matChipRemove><mat-icon>cancel</mat-icon></button>
+    </mat-chip>
+    <input
+      type="search"
+      placeholder="Search"
+      [matChipInputFor]="filterChips"
+      [matChipInputSeparatorKeyCodes]="[]"
+      [matChipInputAddOnBlur]="false"
+    />
+  </mat-chip-list>
+
+  <button mat-icon-button matSuffix>
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button matSuffix>
+    <mat-icon>filter_list</mat-icon>
+  </button>
+  <button mat-icon-button matSuffix>
+    <mat-icon>sort</mat-icon>
+  </button>
+</mat-form-field>
+
+<mat-progress-bar mode="indeterminate" *ngIf="(results | async) === null"></mat-progress-bar>
+<mat-list
+  cdkDropList
+  cdkDropListSortingDisabled
+  [cdkDropListConnectedTo]="dropTarget"
+  [cdkDropListData]="dropListItems"
+>
+  <mat-list-item cdkDrag [cdkDragData]="item" *ngFor="let item of dropListItems">{{ item }}</mat-list-item>
+</mat-list>
+<mat-paginator> </mat-paginator>
