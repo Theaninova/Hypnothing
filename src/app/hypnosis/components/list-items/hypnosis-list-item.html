@@ -1,0 +1,4 @@
+<div [ngSwitch]="item.type">
+  <induction-list-item *ngSwitchCase="'induction'" [item]="$any(item)"></induction-list-item>
+  <div *ngSwitchDefault>{{ item.type }}:{{ item.uuid }}</div>
+</div>

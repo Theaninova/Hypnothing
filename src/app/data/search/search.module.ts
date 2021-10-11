@@ -10,6 +10,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {BrowserModule} from '@angular/platform-browser';
 import {UtilModule} from '../../util/util.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ListItemsModule} from '../../hypnosis/components/list-items/list-items.module';
 
 @NgModule({
   declarations: [SearchComponent],
@@ -25,6 +26,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     BrowserModule,
     UtilModule,
     DragDropModule,
+    ListItemsModule,
   ],
 })
 export class SearchModule {}

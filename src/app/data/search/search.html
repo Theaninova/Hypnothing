@@ -43,7 +43,7 @@
   [cdkDropListData]="results"
 >
   <div class="drag-drop-list-item" cdkDrag [cdkDragData]="item" *ngFor="let item of results">
-    {{ item.uuid }}
+    <hypnosis-list-item [item]="item"></hypnosis-list-item>
   </div>
 </mat-list>
 <mat-paginator> </mat-paginator>

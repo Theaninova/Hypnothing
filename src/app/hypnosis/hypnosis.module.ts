@@ -17,6 +17,7 @@ import {DataModule} from '../data/data.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SearchModule} from '../data/search/search.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {ListItemsModule} from './components/list-items/list-items.module';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatProgressSpinnerModule,
     SearchModule,
     DragDropModule,
+    ListItemsModule,
   ],
   exports: [HypnosisConfiguratorComponent],
   declarations: [HypnosisConfiguratorComponent],
