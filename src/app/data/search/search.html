@@ -36,11 +36,14 @@
 
 <mat-progress-bar mode="indeterminate" *ngIf="(results | async) === null"></mat-progress-bar>
 <mat-list
+  *ngIf="results | async as results"
   cdkDropList
   cdkDropListSortingDisabled
   [cdkDropListConnectedTo]="dropTarget"
-  [cdkDropListData]="dropListItems"
+  [cdkDropListData]="results"
 >
-  <mat-list-item cdkDrag [cdkDragData]="item" *ngFor="let item of dropListItems">{{ item }}</mat-list-item>
+  <div class="drag-drop-list-item" cdkDrag [cdkDragData]="item" *ngFor="let item of results">
+    {{ item.uuid }}
+  </div>
 </mat-list>
 <mat-paginator> </mat-paginator>

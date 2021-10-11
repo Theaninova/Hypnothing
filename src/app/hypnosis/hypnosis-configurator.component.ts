@@ -8,6 +8,7 @@ import {
   copyArrayItem,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
+import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export interface HypnosisFileConfiguration {
   includeBinaural: boolean;
@@ -21,18 +22,18 @@ export interface HypnosisFileConfiguration {
 @Component({
   selector: 'hypnosis-configurator',
   templateUrl: 'hypnosis-configurator.html',
-  styleUrls: ['hypnosis-configurator.scss'],
+  styleUrls: ['hypnosis-configurator.scss', '../util/drag-drop-list.scss'],
 })
 export class HypnosisConfiguratorComponent implements OnInit {
   @Input() hypnosisFile!: Promise<HypnosisFile | undefined>;
 
   suggestionsFormGroup!: Promise<FormGroup>;
 
-  inductions: Uuid[] = [];
+  inductions: HypnosisThing[] = [];
 
   constructor(private formBuilder: FormBuilder) {}
 
-  drop(event: CdkDragDrop<string[]>) {
+  drop(event: CdkDragDrop<HypnosisThing[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,

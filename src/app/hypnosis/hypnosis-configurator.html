@@ -17,7 +17,9 @@
       [cdkDropListData]="inductions"
       (cdkDropListDropped)="drop($event)"
     >
-      <mat-list-item cdkDrag *ngFor="let item of inductions" [cdkDragData]="item">{{ item }}</mat-list-item>
+      <div class="drag-drop-list-item" cdkDrag *ngFor="let item of inductions" [cdkDragData]="item">
+        {{ item }}
+      </div>
     </mat-list>
   </mat-step>
   <mat-step>
