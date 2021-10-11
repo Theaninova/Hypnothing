@@ -24,10 +24,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.4.1
+      - uses: actions/setup-node@v2
         with:
           always-auth: true
           node-version: 12.x
-          registry-url: https://npm.pkg.github.com/wulkant
-      - run: npm install
+          registry-url: https://npm.pkg.github.com/wulkanat
+      - run: npm ci
       - run: npm run build
