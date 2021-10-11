@@ -10,11 +10,9 @@
     <mat-button-toggle [value]="creativeWork.language">{{
       creativeWork.language.toUpperCase()
     }}</mat-button-toggle>
-    <mat-button-toggle
-      *ngFor="let lang of $any(creativeWork.translatedWorks) | keyvalue"
-      [value]="lang.key"
-      >{{ lang.key.toUpperCase() }}</mat-button-toggle
-    >
+    <mat-button-toggle *ngFor="let lang of creativeWork.translatedWorks | map" [value]="lang.key">{{
+      lang.key.toUpperCase()
+    }}</mat-button-toggle>
   </mat-button-toggle-group>
 
   <table mat-table [dataSource]="[creativeWork]">

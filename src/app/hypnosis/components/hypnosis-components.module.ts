@@ -15,6 +15,7 @@ import {HypnosisSafetyComponent} from './hypnosis-safety.component';
 import {HypnosisFileComponent} from './hypnosis-file.component';
 import {DataModule} from '../../data/data.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {UtilModule} from '../../util/util.module';
 
 /**
  * NOTE: NONE of the components contain the title to remain flexible
@@ -32,6 +33,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDividerModule,
     DataModule,
     MatProgressSpinnerModule,
+    UtilModule,
   ],
   declarations: [
     HypnosisSuggestionComponent,
