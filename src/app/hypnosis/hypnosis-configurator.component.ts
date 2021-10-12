@@ -2,8 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {fromPairs} from 'lodash-es';
-import {Author, Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {AuthorReference, Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {
+  HypnosisThing,
+  HypnosisTypeEnumerator,
+} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export interface HypnosisFileConfiguration {
   includeBinaural: boolean;
@@ -32,9 +35,9 @@ export class HypnosisConfiguratorComponent implements OnInit {
 
   trigger?: HypnosisThing;
 
-  language = 'en';
+  language?: string;
 
-  speaker!: Author;
+  speaker?: AuthorReference;
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -50,7 +53,10 @@ export class HypnosisConfiguratorComponent implements OnInit {
     );
   }
 
-  log(it: unknown) {
-    console.log(it);
+  find(type: HypnosisTypeEnumerator): Record<string, string> {
+    return {
+      [`spokenLanguages.${this.language}.uuid`]: this.speaker!.uuid,
+      type,
+    };
   }
 }

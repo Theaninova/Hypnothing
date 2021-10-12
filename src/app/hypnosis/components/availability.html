@@ -1,25 +1,28 @@
 <div class="vertical">
   <mat-button-toggle-group [(ngModel)]="languageValue" (valueChange)="languageChanged.emit(languageValue)">
     <mat-button-toggle
-      [disabled]="!index[language]?.[speakerValue?.uuid || '']"
-      *ngFor="let language of languages | keys"
+      [disabled]="!index[language][speakerValue]"
+      *ngFor="let language of item.spokenLanguages | keys"
       [value]="language"
       >{{ language | uppercase }}</mat-button-toggle
     >
   </mat-button-toggle-group>
 
-  <div *ngIf="speakers | async as speakers; else loading">
-    <mat-button-toggle-group [(ngModel)]="speakerValue" (valueChange)="speakerChanged.emit(speakerValue)">
-      <mat-button-toggle
-        *ngFor="let speaker of speakers | values"
-        [disabled]="!index[languageValue]?.[speaker?.uuid || ''] || false"
-        [value]="speaker"
-      >
+  <mat-button-toggle-group
+    [(ngModel)]="speakerValue"
+    (valueChange)="speakerChanged.emit({uuid: speakerValue})"
+  >
+    <mat-button-toggle
+      *ngFor="let speaker of speakers | map"
+      [disabled]="!index[languageValue][speaker.key]"
+      [value]="speaker.key"
+    >
+      <div *ngIf="speaker.value | async as speaker; else loading">
         {{ speaker?.additionalName || 'deleted author' | titlecase }}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-  <ng-template #loading>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </ng-template>
+      </div>
+      <ng-template #loading>
+        <mat-spinner></mat-spinner>
+      </ng-template>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 </div>

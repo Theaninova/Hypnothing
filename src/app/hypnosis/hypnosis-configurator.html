@@ -11,28 +11,21 @@
   <mat-step>
     <ng-template matStepLabel>Choose your Induction</ng-template>
     <hypnosis-search
-      *ngIf="hypnosisFile | async as hypnosisFile"
-      [forcedFilters]="{
-        speaker: speaker.uuid,
-        language: language,
-        type: 'induction'
-      }"
+      *ngIf="language && speaker; else chooseLanguage"
+      [forcedFilters]="{type: 'induction'}"
       (resultsChanged)="inductionResults = $event"
     >
       <hypnosis-select-drag-list [items]="inductionResults" (selectionChanged)="inductions = $event">
         <h2>Induction Selection</h2>
       </hypnosis-select-drag-list>
     </hypnosis-search>
+    <ng-template #chooseLanguage> Please choose your language and speaker first. </ng-template>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Choose a Trigger</ng-template>
     <hypnosis-search
-      *ngIf="hypnosisFile | async as hypnosisFile"
-      [forcedFilters]="{
-        speaker: speaker.uuid,
-        language: language,
-        type: 'trigger'
-      }"
+      *ngIf="speaker && language; else chooseLanguage"
+      [forcedFilters]="{type: 'trigger'}"
       (resultsChanged)="triggerResults = $event"
     >
       <hypnosis-select-list
@@ -41,6 +34,7 @@
         (selectionChanged)="trigger = $event[0]"
       ></hypnosis-select-list>
     </hypnosis-search>
+    <ng-template #chooseLanguage> Please choose your language and speaker first. </ng-template>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Review Safeties & Warnings</ng-template>

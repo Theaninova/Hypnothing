@@ -13,28 +13,20 @@ I could imagine versions with more effect or more permanence, as well as version
   `,
     author: {uuid: 'author:vive'},
     minimumTranceDepth: 1,
-    overviewAudioOptions: [
-      {
-        uuid: 'audio:file:gamer_files_shooter:introduction:theania:en',
-        speaker: {uuid: 'author:theania'},
-        language: 'en',
-      },
-      {
-        uuid: 'audio:file:gamer_files_shooter:introduction:theania:de',
-        speaker: {uuid: 'author:theania'},
-        language: 'de',
-      },
-      {
-        uuid: 'audio:file:gamer_files_shooter:introduction:theania:es',
-        speaker: {uuid: 'author:theania'},
-        language: 'es',
-      },
-      {
-        uuid: 'audio:file:gamer_files_shooter:introduction:vive:en',
-        speaker: {uuid: 'author:vive'},
-        language: 'en',
-      },
+    audio: [
+      [
+        {uuid: 'audio:file:gamer_files_shooter:introduction:theania:en'},
+        {uuid: 'audio:file:gamer_files_shooter:introduction:theania:de'},
+        {uuid: 'audio:file:gamer_files_shooter:introduction:theania:es'},
+        {uuid: 'audio:file:gamer_files_shooter:introduction:vive:en'},
+      ],
+      [],
     ],
+    spokenLanguages: {
+      en: [{uuid: 'author:theania'}, {uuid: 'author:vive'}],
+      de: [{uuid: 'author:theania'}],
+      es: [{uuid: 'author:theania'}],
+    },
     type: 'file',
     preferredTranceDepth: 2,
     warnings: [{uuid: 'warning:dummy'}],

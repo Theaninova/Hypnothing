@@ -26,7 +26,6 @@ export class SearchComponent implements OnInit {
   };
 
   async ngOnInit() {
-    console.log(JSON.stringify(this.forcedFilters));
     await this.search();
   }
 

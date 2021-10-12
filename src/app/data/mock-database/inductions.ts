@@ -8,30 +8,10 @@ export const INDUCTIONS: Record<Uuid, TranceInduction> = {
     uuid: 'induction:mind_melt',
     tags: ['virtual you'],
     tranceDepthRating: 1,
-    audioOptions: [
-      {
-        uuid: 'audio:induction:mind_melt:theania:en',
-        language: 'en',
-        speaker: {uuid: 'author:theania'},
-      },
-    ],
+    audio: [[{uuid: 'audio:induction:mind_melt:theania:en'}]],
+    spokenLanguages: {
+      en: [{uuid: 'author:theania'}],
+    },
     type: 'induction',
-    binauralKeyframes: [
-      {
-        at: '00:00',
-        in: 10,
-        value: {
-          volume: 'inherit',
-          wave: 'theta',
-        },
-      },
-    ],
-    noiseKeyframes: [
-      {
-        at: '00:00',
-        in: 10,
-        value: 'inherit',
-      },
-    ],
   },
 };

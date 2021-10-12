@@ -23,6 +23,23 @@ export const AUDIO_FILES: Record<Uuid, AudioFile> = keyBy(
     language: last(file.split(':'))!,
     src: 'TODO', // TODO,
     type: 'audio file',
+    binauralKeyframes: [
+      {
+        at: '00:00',
+        in: 10,
+        value: {
+          volume: 'inherit',
+          wave: 'theta',
+        },
+      },
+    ],
+    noiseKeyframes: [
+      {
+        at: '00:00',
+        in: 10,
+        value: 'inherit',
+      },
+    ],
     uuid: file,
   })),
   'uuid',
