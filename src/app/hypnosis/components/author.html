@@ -6,12 +6,10 @@
   <mat-card-actions>
     <mat-chip-list>
       <mat-chip>
-        <mat-chip-avatar [ngSwitch]="author.gender">
-          <mat-icon *ngSwitchCase="'male'">male</mat-icon>
-          <mat-icon *ngSwitchCase="'female'">female</mat-icon>
-          <mat-icon *ngSwitchDefault>transgender</mat-icon>
+        <mat-chip-avatar>
+          <gender-icon [gender]="author.gender"></gender-icon>
         </mat-chip-avatar>
-        {{ author.gender.toUpperCase() }}
+        {{ author.gender | uppercase }}
       </mat-chip>
     </mat-chip-list>
   </mat-card-actions>

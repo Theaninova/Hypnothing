@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {fromPairs} from 'lodash-es';
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {Author, Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export interface HypnosisFileConfiguration {
@@ -31,6 +31,10 @@ export class HypnosisConfiguratorComponent implements OnInit {
   triggerResults!: Promise<HypnosisThing[]>;
 
   trigger?: HypnosisThing;
+
+  language = 'en';
+
+  speaker!: Author;
 
   constructor(private formBuilder: FormBuilder) {}
 

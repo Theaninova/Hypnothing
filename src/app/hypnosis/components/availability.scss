@@ -1,0 +1,10 @@
+.vertical {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.mat-button-toggle-group {
+  margin-bottom: 8px;
+  width: fit-content;
+}

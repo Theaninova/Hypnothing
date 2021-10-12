@@ -1,12 +1,21 @@
 <mat-vertical-stepper>
   <mat-step>
+    <ng-template matStepLabel>Choose Language & Speaker</ng-template>
+    <availability
+      *ngIf="hypnosisFile | async as hypnosisFile"
+      [item]="hypnosisFile"
+      (languageChanged)="language = $event"
+      (speakerChanged)="speaker = $event"
+    ></availability>
+  </mat-step>
+  <mat-step>
     <ng-template matStepLabel>Choose your Induction</ng-template>
     <hypnosis-search
       *ngIf="hypnosisFile | async as hypnosisFile"
       [forcedFilters]="{
-        speaker: $any(hypnosisFile.speaker),
-        language: hypnosisFile.language,
-        type: 'Induction'
+        speaker: speaker.uuid,
+        language: language,
+        type: 'induction'
       }"
       (resultsChanged)="inductionResults = $event"
     >
@@ -20,8 +29,8 @@
     <hypnosis-search
       *ngIf="hypnosisFile | async as hypnosisFile"
       [forcedFilters]="{
-        speaker: $any(hypnosisFile.speaker),
-        language: hypnosisFile.language,
+        speaker: speaker.uuid,
+        language: language,
         type: 'trigger'
       }"
       (resultsChanged)="triggerResults = $event"

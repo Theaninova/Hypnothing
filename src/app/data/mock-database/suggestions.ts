@@ -1,29 +1,22 @@
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
-import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
-  'suggestion:trance_when_you_die:theania:en': {
+  'suggestion:trance_when_you_die': {
     title: 'Fall into Trance when you die',
     description: `Makes you fall into a deep trance whenever you die`,
     warnings: [],
     safeties: [],
     content: {
-      overviewIntroductionSrc: 'TODO', // TODO
-      shortSrc: 'TODO', // TODO
-      longSrc: 'TODO', // TODO
-      summarySrc: 'TODO', // TODO
+      overviewIntroductionAudioOptions: [], // TODO
+      shortAudioOptions: [], // TODO
+      longAudioOptions: [], // TODO
+      summaryAudioOptions: [], // TODO
     },
-    type: HypnosisType.SUGGESTION,
-    language: 'en',
-    translatedWorks: {
-      de: 'uwtuwutwi',
-      es: 'wjajjgag',
-    },
-    uuid: 'suggestion:trance_when_you_die:theania:en',
+    type: 'suggestion',
+    uuid: 'suggestion:trance_when_you_die',
     isRequired: false,
-    author: 'author:vive',
-    speaker: 'author:theania',
+    author: {uuid: 'author:vive'},
   },
   'suggestion:feel_every_hit:theania:en': {
     title: 'Feel every hit',
@@ -31,18 +24,15 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: ['hits can be intense'],
     safeties: ['hit strength is limited by your subconscious mind'],
     content: {
-      overviewIntroductionSrc: 'TODO', // TODO
-      shortSrc: 'TODO', // TODO
-      longSrc: 'TODO', // TODO
-      summarySrc: 'TODO', // TODO
+      overviewIntroductionAudioOptions: [], // TODO
+      shortAudioOptions: [], // TODO
+      longAudioOptions: [], // TODO
+      summaryAudioOptions: [], // TODO
     },
-    type: HypnosisType.SUGGESTION,
-    language: 'en',
-    translatedWorks: {},
+    type: 'suggestion',
     uuid: 'suggestion:feel_every_hit:theania:en',
     isRequired: false,
-    author: 'author:vive',
-    speaker: 'author:theania',
+    author: {uuid: 'author:vive'},
   },
   'suggestion:get_dizzy_when_low:theania:en': {
     title: 'Get dizzy when low',
@@ -50,18 +40,15 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     content: {
-      overviewIntroductionSrc: 'TODO', // TODO
-      shortSrc: 'TODO', // TODO
-      longSrc: 'TODO', // TODO
-      summarySrc: 'TODO', // TODO
+      overviewIntroductionAudioOptions: [], // TODO
+      shortAudioOptions: [], // TODO
+      longAudioOptions: [], // TODO
+      summaryAudioOptions: [], // TODO
     },
-    type: HypnosisType.SUGGESTION,
-    language: 'en',
-    translatedWorks: {},
+    type: 'suggestion',
     uuid: 'suggestion:get_dizzy_when_low:theania:en',
     isRequired: false,
-    author: 'author:vive',
-    speaker: 'author:theania',
+    author: {uuid: 'author:vive'},
   },
   'suggestion:get_rewarded_for_special_kills:theania:en': {
     title: 'Get rewarded for special kills',
@@ -69,18 +56,15 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     content: {
-      overviewIntroductionSrc: 'TODO', // TODO
-      shortSrc: 'TODO', // TODO
-      longSrc: 'TODO', // TODO
-      summarySrc: 'TODO', // TODO
+      overviewIntroductionAudioOptions: [], // TODO
+      shortAudioOptions: [], // TODO
+      longAudioOptions: [], // TODO
+      summaryAudioOptions: [], // TODO
     },
-    type: HypnosisType.SUGGESTION,
-    language: 'en',
-    translatedWorks: {},
+    type: 'suggestion',
     uuid: 'suggestion:get_rewarded_for_special_kills:theania:en',
     isRequired: false,
-    author: 'author:vive',
-    speaker: 'author:theania',
+    author: {uuid: 'author:vive'},
   },
   'suggestion:get_rewarded_for_achievements_and_accomplishments:theania:en': {
     title: 'Get rewarded for achievements and accomplishements',
@@ -88,17 +72,14 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     content: {
-      overviewIntroductionSrc: 'TODO', // TODO
-      shortSrc: 'TODO', // TODO
-      longSrc: 'TODO', // TODO
-      summarySrc: 'TODO', // TODO
+      overviewIntroductionAudioOptions: [], // TODO
+      shortAudioOptions: [], // TODO
+      longAudioOptions: [], // TODO
+      summaryAudioOptions: [], // TODO
     },
-    type: HypnosisType.SUGGESTION,
-    language: 'en',
-    translatedWorks: {},
+    type: 'suggestion',
     uuid: 'suggestion:get_rewarded_for_achievements_and_accomplishments:theania:en',
     isRequired: false,
-    author: 'author:vive',
-    speaker: 'author:theania',
+    author: {uuid: 'author:vive'},
   },
 };

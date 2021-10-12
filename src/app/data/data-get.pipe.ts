@@ -2,9 +2,11 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {DataProvider} from './data.provider';
 import {
+  HypnosisThing,
   HypnosisTypeEnumerator,
   SpecificHypnosisType,
 } from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {Reference} from '@wulkanat/hypnothing-core/lib/util';
 
 @Pipe({
   name: 'fetch',
@@ -29,11 +31,14 @@ export class FetchAllPipe implements PipeTransform {
   constructor(readonly dataProvider: DataProvider) {}
 
   transform<T extends HypnosisTypeEnumerator>(
-    uuids: Uuid[],
+    references: Reference<HypnosisThing, never>[],
     _type: T,
   ): Promise<SpecificHypnosisType<T>>[] {
-    return uuids.map(
-      uuid => this.dataProvider.get(uuid) as Promise<SpecificHypnosisType<T>>,
+    return references.map(
+      reference =>
+        this.dataProvider.get(reference.uuid) as Promise<
+          SpecificHypnosisType<T>
+        >,
     );
   }
 }

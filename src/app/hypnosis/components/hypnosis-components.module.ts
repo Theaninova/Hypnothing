@@ -16,6 +16,10 @@ import {HypnosisFileComponent} from './hypnosis-file.component';
 import {DataModule} from '../../data/data.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {UtilModule} from '../../util/util.module';
+import {AvailabilityComponent} from './availability.component';
+import {GenderIconComponent} from './gender-icon.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {FormsModule} from '@angular/forms';
 
 /**
  * NOTE: NONE of the components contain the title to remain flexible
@@ -34,6 +38,9 @@ import {UtilModule} from '../../util/util.module';
     DataModule,
     MatProgressSpinnerModule,
     UtilModule,
+    BrowserModule,
+    MatProgressBarModule,
+    FormsModule,
   ],
   declarations: [
     HypnosisSuggestionComponent,
@@ -41,12 +48,15 @@ import {UtilModule} from '../../util/util.module';
     AuthorComponent,
     HypnosisFileComponent,
     HypnosisSafetyComponent,
+    GenderIconComponent,
+    AvailabilityComponent,
   ],
   exports: [
     HypnosisSuggestionComponent,
     HypnosisSafetyComponent,
     HypnosisFileComponent,
     CreativeWorkComponent,
+    AvailabilityComponent,
   ],
 })
 export class HypnosisComponentsModule {}

@@ -1,36 +1,53 @@
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety';
-import {HypnosisType} from '@wulkanat/hypnothing-core/lib/hypnosis';
 
 export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
-  'safety:revert_if_too_intense:theania:en': {
+  'safety:revert_if_too_intense': {
     title: 'Never too Intense',
-    speaker: 'author:vive',
-    author: 'author:theania',
-    uuid: 'safety:revert_if_too_intense:theania:en',
+    author: {uuid: 'author:theania'},
+    uuid: 'safety:revert_if_too_intense',
     canBeDisabled: false,
-    type: HypnosisType.SAFETY,
-    language: 'en',
-    translatedWorks: {},
+    type: 'safety',
     description:
       'If at any point the effects become too intense, you will instantly revert back to normal.',
-    introductionSrc: 'TODO',
-    reminderSrc: 'TODO',
+    introductionAudioOptions: [
+      {
+        uuid: 'audio:safety:revert_if_too_intense:introduction:theania:en',
+        language: 'en',
+        speaker: {uuid: 'author:theania'},
+      },
+    ],
+    reminderAudioOptions: [
+      {
+        language: 'en',
+        speaker: {uuid: 'author:theania'},
+        uuid: 'audio:safety:revert_if_too_intense:reminder:theania:en',
+      },
+    ],
     tags: ['limiter'],
   },
-  'safety:some_other_safety:theania:en': {
+  'safety:some_other_safety': {
     title: 'Some other safety',
-    speaker: 'author:theania',
-    author: 'author:vive',
-    uuid: 'safety:some_other_safety:theania:en',
+    author: {uuid: 'author:vive'},
+    uuid: 'safety:some_other_safety',
     canBeDisabled: true,
-    type: HypnosisType.SAFETY,
-    language: 'en',
-    translatedWorks: {},
+    type: 'safety',
     description:
       'If at any point the effects become too intense, you will instantly revert back to normal.',
-    introductionSrc: 'TODO',
-    reminderSrc: 'TODO',
+    introductionAudioOptions: [
+      {
+        language: 'en',
+        speaker: {uuid: 'author:theania'},
+        uuid: 'audio:safety:some_other_safety:introduction:theania:en',
+      },
+    ],
+    reminderAudioOptions: [
+      {
+        language: 'en',
+        speaker: {uuid: 'author:theania'},
+        uuid: 'audio:safety:some_other_safety:reminder:theania:en',
+      },
+    ],
     tags: ['other', 'tags'],
   },
 };
