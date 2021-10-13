@@ -36,9 +36,11 @@ function esNavigate<T>(object: unknown, path: string[]): T[] {
   providedIn: 'root',
 })
 export class DataProvider {
+  /**
+   * This search tries to somewhat emulate the behavior of Elasticsearch
+   */
   async search(parameters: SearchParameters): Promise<HypnosisThing[]> {
     await wait(500);
-    console.log(parameters);
 
     return flatMap(MOCK_DATABASE, (database, type) =>
       !parameters.filters?.type || parameters.filters.type === type

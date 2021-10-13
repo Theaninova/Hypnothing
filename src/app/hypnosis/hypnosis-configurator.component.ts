@@ -46,7 +46,7 @@ export class HypnosisConfiguratorComponent implements OnInit {
       resolve(
         this.formBuilder.group(
           fromPairs(
-            (await this.hypnosisFile)!.suggestions.map(it => [it, true]),
+            (await this.hypnosisFile)!.suggestions.map(it => [it.uuid, true]),
           ),
         ),
       ),
