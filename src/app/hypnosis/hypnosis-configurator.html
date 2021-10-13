@@ -27,7 +27,7 @@
     <hypnosis-search
       *ngIf="language && speaker; else chooseLanguage"
       [forcedFilters]="{type: 'induction'}"
-      [filters]="{'audio.language': language, 'audio.speaker': speaker.uuid}"
+      [filters]="{'audio.language': language, 'audio.speaker.uuid': speaker.uuid}"
       (resultsChanged)="inductionResults = $event"
     >
       <hypnosis-select-drag-list [items]="inductionResults" (selectionChanged)="inductions = $event">
@@ -41,7 +41,7 @@
     <hypnosis-search
       *ngIf="speaker && language; else chooseLanguage"
       [forcedFilters]="{type: 'trigger'}"
-      [filters]="{'audio.language': language, 'audio.speaker': speaker.uuid}"
+      [filters]="{'audio.language': language, 'audio.speaker.uuid': speaker.uuid}"
       (resultsChanged)="triggerResults = $event"
     >
       <hypnosis-select-list

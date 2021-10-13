@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {find, flatMap, filter, every, tail} from 'lodash-es';
+import {find, flatMap, filter, every, tail, flattenDeep} from 'lodash-es';
 import {MOCK_DATABASE} from './mock-database/mock-database';
 import {
   HypnosisThing,
@@ -25,12 +25,10 @@ export interface SearchParameters {
  * Navigate to a path
  */
 function esNavigate<T>(object: unknown, path: string[]): T[] {
-  return flatMap(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    (Array.isArray(object[path[0]]) ? object[path[0]] : [object[path[0]]]).map(
-      (it: unknown) => (path.length === 1 ? esNavigate<T>(it, tail(path)) : it),
-    ),
+  const nav = (object as Record<string, unknown>)[path[0]];
+
+  return flatMap(Array.isArray(nav) ? flattenDeep(nav) : [nav], it =>
+    path.length > 1 ? esNavigate<T>(it, tail(path)) : flattenDeep([it]),
   );
 }
 
@@ -40,13 +38,13 @@ function esNavigate<T>(object: unknown, path: string[]): T[] {
 export class DataProvider {
   async search(parameters: SearchParameters): Promise<HypnosisThing[]> {
     await wait(500);
+    console.log(parameters);
 
     return flatMap(MOCK_DATABASE, (database, type) =>
       !parameters.filters?.type || parameters.filters.type === type
         ? filter(database, item =>
-            every(
-              parameters.filters,
-              (value, field) => esNavigate(item, field.split('.')) === value,
+            every(parameters.filters, (value, field) =>
+              esNavigate(item, field.split('.')).includes(value),
             ),
           )
         : [],
@@ -60,7 +58,7 @@ export class DataProvider {
   }
 
   async get<T extends HypnosisThing>(uuid: Uuid): Promise<T | undefined> {
-    await wait(5000);
+    await wait(500);
 
     return find(MOCK_DATABASE, it => typeof it[uuid] !== 'undefined')?.[
       uuid
