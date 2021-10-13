@@ -17,6 +17,10 @@ const audioFiles = [
   'audio:safety:revert_if_too_intense:reminder:theania:en',
   'audio:safety:some_other_safety:introduction:theania:en',
   'audio:safety:some_other_safety:reminder:theania:en',
+  'audio:suggestion:trance_when_you_die:overview:theania:en',
+  'audio:suggestion:trance_when_you_die:introduction:theania:en',
+  'audio:suggestion:trance_when_you_die:detailed:theania:en',
+  'audio:suggestion:trance_when_you_die:reminder:theania:en',
 ];
 
 export const AUDIO_FILES: Record<Uuid, AudioFile> = keyBy(

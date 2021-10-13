@@ -7,7 +7,36 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     description: `Makes you fall into a deep trance whenever you die`,
     warnings: [],
     safeties: [],
-    audio: [[], [], [], []], // TODO
+    audio: [
+      [
+        {
+          uuid: 'audio:suggestion:trance_when_you_die:overview:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+      [
+        {
+          uuid: 'audio:suggestion:trance_when_you_die:introduction:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+      [
+        {
+          uuid: 'audio:suggestion:trance_when_you_die:detailed:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+      [
+        {
+          uuid: 'audio:suggestion:trance_when_you_die:reminder:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+    ], // TODO
     type: 'suggestion',
     uuid: 'suggestion:trance_when_you_die',
     isRequired: true,
