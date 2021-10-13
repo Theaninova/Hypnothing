@@ -35,15 +35,9 @@ export interface HypnosisFileConfiguration {
 export class HypnosisConfiguratorComponent implements OnInit {
   @Input() hypnosisFile!: Promise<HypnosisFile | undefined>;
 
-  suggestionsFormGroup!: Promise<FormGroup>;
-
   inductionResults!: Promise<HypnosisThing[]>;
 
-  inductions: HypnosisThing[] = [];
-
   triggerResults!: Promise<HypnosisThing[]>;
-
-  trigger?: HypnosisThing;
 
   configuration!: Promise<HypnosisFileConfiguration>;
 
@@ -57,16 +51,6 @@ export class HypnosisConfiguratorComponent implements OnInit {
   stringify = JSON.stringify;
 
   ngOnInit() {
-    this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>
-      resolve(
-        this.formBuilder.group(
-          fromPairs(
-            (await this.hypnosisFile)!.suggestions.map(it => [it.uuid, true]),
-          ),
-        ),
-      ),
-    );
-
     this.configuration = new Promise(async resolve =>
       resolve({
         includeBinaural: true,
