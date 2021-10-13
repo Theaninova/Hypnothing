@@ -18,6 +18,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {SearchModule} from '../data/search/search.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ListItemsModule} from './components/list-items/list-items.module';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {ListItemsModule} from './components/list-items/list-items.module';
     SearchModule,
     DragDropModule,
     ListItemsModule,
+    NgxSkeletonLoaderModule,
   ],
   exports: [HypnosisConfiguratorComponent],
   declarations: [HypnosisConfiguratorComponent],

@@ -2,11 +2,25 @@
   <mat-step>
     <ng-template matStepLabel>Choose Language & Speaker</ng-template>
     <availability
-      *ngIf="hypnosisFile | async as hypnosisFile"
+      *ngIf="hypnosisFile | async as hypnosisFile; else loading"
       [item]="hypnosisFile"
       (languageChanged)="language = $event"
       (speakerChanged)="speaker = $event"
     ></availability>
+    <ng-template #loading>
+      <div style="display: flex; flex-direction: column">
+        <ngx-skeleton-loader
+          count="1"
+          appearance="circle"
+          [theme]="{'height': '48px', 'border-radius': '4px', 'width': '110px', 'margin': '1px 0 0 1px'}"
+        ></ngx-skeleton-loader>
+        <ngx-skeleton-loader
+          count="1"
+          appearance="circle"
+          [theme]="{'height': '48px', 'border-radius': '4px', 'width': '100px', 'margin': '1px 0 0 1px'}"
+        ></ngx-skeleton-loader>
+      </div>
+    </ng-template>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Choose your Induction</ng-template>
@@ -59,9 +73,9 @@
     </mat-accordion>
   </mat-step>
   <mat-step>
-    <form [formGroup]="suggestionsFormGroup" *ngIf="suggestionsFormGroup | async as suggestionsFormGroup">
-      <ng-template matStepLabel>Select Suggestions</ng-template>
+    <ng-template matStepLabel>Select Suggestions</ng-template>
 
+    <form [formGroup]="suggestionsFormGroup" *ngIf="suggestionsFormGroup | async as suggestionsFormGroup">
       <mat-accordion *ngIf="hypnosisFile | async as hypnosisFile">
         <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions | fetchAll: 'suggestion'">
           <mat-expansion-panel-header *ngIf="suggestion | async as suggestion">
