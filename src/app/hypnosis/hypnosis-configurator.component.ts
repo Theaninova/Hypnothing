@@ -52,11 +52,4 @@ export class HypnosisConfiguratorComponent implements OnInit {
       ),
     );
   }
-
-  find(type: HypnosisTypeEnumerator): Record<string, string> {
-    return {
-      [`spokenLanguages.${this.language}.uuid`]: this.speaker!.uuid,
-      type,
-    };
-  }
 }

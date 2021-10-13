@@ -11,8 +11,5 @@ export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
     type: 'trigger',
     triggerType: 'time limited',
     audio: [[], []], // TODO
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
   },
 };

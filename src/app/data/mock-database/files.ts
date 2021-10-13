@@ -15,18 +15,29 @@ I could imagine versions with more effect or more permanence, as well as version
     minimumTranceDepth: 1,
     audio: [
       [
-        {uuid: 'audio:file:gamer_files_shooter:introduction:theania:en'},
-        {uuid: 'audio:file:gamer_files_shooter:introduction:theania:de'},
-        {uuid: 'audio:file:gamer_files_shooter:introduction:theania:es'},
-        {uuid: 'audio:file:gamer_files_shooter:introduction:vive:en'},
+        {
+          uuid: 'audio:file:gamer_files_shooter:introduction:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+        {
+          uuid: 'audio:file:gamer_files_shooter:introduction:theania:de',
+          language: 'de',
+          speaker: {uuid: 'author:theania'},
+        },
+        {
+          uuid: 'audio:file:gamer_files_shooter:introduction:theania:es',
+          language: 'es',
+          speaker: {uuid: 'author:theania'},
+        },
+        {
+          uuid: 'audio:file:gamer_files_shooter:introduction:vive:en',
+          language: 'en',
+          speaker: {uuid: 'author:vive'},
+        },
       ],
       [],
     ],
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}, {uuid: 'author:vive'}],
-      de: [{uuid: 'author:theania'}],
-      es: [{uuid: 'author:theania'}],
-    },
     type: 'file',
     preferredTranceDepth: 2,
     warnings: [{uuid: 'warning:dummy'}],

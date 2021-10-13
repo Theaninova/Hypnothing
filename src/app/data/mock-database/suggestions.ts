@@ -8,9 +8,6 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     audio: [[], [], [], []], // TODO
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
     type: 'suggestion',
     uuid: 'suggestion:trance_when_you_die',
     isRequired: false,
@@ -22,9 +19,6 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: ['hits can be intense'],
     safeties: ['hit strength is limited by your subconscious mind'],
     audio: [[], [], [], []], // TODO
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
     type: 'suggestion',
     uuid: 'suggestion:feel_every_hit',
     isRequired: false,
@@ -36,9 +30,6 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     audio: [[], [], [], []], // TODO
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
     type: 'suggestion',
     uuid: 'suggestion:get_dizzy_when_low',
     isRequired: false,
@@ -50,9 +41,6 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     audio: [[], [], [], []], // TODO
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
     type: 'suggestion',
     uuid: 'suggestion:get_rewarded_for_special_kills',
     isRequired: false,
@@ -64,9 +52,6 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     warnings: [],
     safeties: [],
     audio: [[], [], [], []], // TODO
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
     type: 'suggestion',
     uuid: 'suggestion:get_rewarded_for_achievements_and_accomplishments',
     isRequired: false,

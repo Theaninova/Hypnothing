@@ -16,10 +16,12 @@ export class FetchPipe implements PipeTransform {
   constructor(readonly dataProvider: DataProvider) {}
 
   async transform<T extends HypnosisTypeEnumerator>(
-    uuid: Uuid,
+    reference: Reference<HypnosisThing, never>,
     _type: T,
   ): Promise<SpecificHypnosisType<T>> {
-    return (await this.dataProvider.get(uuid)) as SpecificHypnosisType<T>;
+    return (await this.dataProvider.get(
+      reference.uuid,
+    )) as SpecificHypnosisType<T>;
   }
 }
 

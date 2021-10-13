@@ -20,6 +20,7 @@ import {AvailabilityComponent} from './availability.component';
 import {GenderIconComponent} from './gender-icon.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {FormsModule} from '@angular/forms';
+import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 
 /**
  * NOTE: NONE of the components contain the title to remain flexible
@@ -41,6 +42,7 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     MatProgressBarModule,
     FormsModule,
+    NgxSkeletonLoaderModule,
   ],
   declarations: [
     HypnosisSuggestionComponent,

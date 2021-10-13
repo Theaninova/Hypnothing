@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {find, flatMap, filter, every, get} from 'lodash-es';
+import {find, flatMap, filter, every, tail} from 'lodash-es';
 import {MOCK_DATABASE} from './mock-database/mock-database';
 import {
   HypnosisThing,
@@ -20,6 +20,20 @@ export interface SearchParameters {
   filters?: Record<string, unknown>;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
+/**
+ * Navigate to a path
+ */
+function esNavigate<T>(object: unknown, path: string[]): T[] {
+  return flatMap(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    (Array.isArray(object[path[0]]) ? object[path[0]] : [object[path[0]]]).map(
+      (it: unknown) => (path.length === 1 ? esNavigate<T>(it, tail(path)) : it),
+    ),
+  );
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,7 +46,7 @@ export class DataProvider {
         ? filter(database, item =>
             every(
               parameters.filters,
-              (value, field) => get(item, field) === value,
+              (value, field) => esNavigate(item, field.split('.')) === value,
             ),
           )
         : [],
@@ -46,7 +60,7 @@ export class DataProvider {
   }
 
   async get<T extends HypnosisThing>(uuid: Uuid): Promise<T | undefined> {
-    await wait(500);
+    await wait(5000);
 
     return find(MOCK_DATABASE, it => typeof it[uuid] !== 'undefined')?.[
       uuid

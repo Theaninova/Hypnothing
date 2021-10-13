@@ -22,5 +22,10 @@
   </table>-->
 </div>
 <ng-template #loading>
-  <mat-spinner></mat-spinner>
+  <ngx-skeleton-loader [theme]="{height: '32px', width: '60%', margin: '0 0 16px'}"></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    *ngFor="let width of ['99%', '96%', '90%', '100%', '94%']"
+    [theme]="{height: '10px', width: width, margin: '0 0 5px'}"
+    count="1"
+  ></ngx-skeleton-loader>
 </ng-template>

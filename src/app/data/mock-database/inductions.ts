@@ -8,10 +8,15 @@ export const INDUCTIONS: Record<Uuid, TranceInduction> = {
     uuid: 'induction:mind_melt',
     tags: ['virtual you'],
     tranceDepthRating: 1,
-    audio: [[{uuid: 'audio:induction:mind_melt:theania:en'}]],
-    spokenLanguages: {
-      en: [{uuid: 'author:theania'}],
-    },
+    audio: [
+      [
+        {
+          uuid: 'audio:induction:mind_melt:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+    ],
     type: 'induction',
   },
 };

@@ -9,7 +9,19 @@ import {
   Uuid,
 } from '@wulkanat/hypnothing-core/lib/schema.org';
 import {DataProvider} from '../../data/data.provider';
-import {first, flatMap, keyBy, mapValues, values} from 'lodash-es';
+import {
+  flatMap,
+  flatten,
+  groupBy,
+  isNil,
+  keyBy,
+  map,
+  mapValues,
+  reject,
+  tail,
+  values,
+} from 'lodash-es';
+import {filter} from 'rxjs';
 
 @Component({
   selector: 'availability',
@@ -31,22 +43,42 @@ export class AvailabilityComponent implements OnInit {
 
   constructor(readonly dataProvider: DataProvider) {}
 
-  index!: Record<string, Record<Uuid, AuthorReference>>;
+  index!: Record<string, Record<Uuid, AudioOptions>>;
+
+  private merge<T>(
+    objs: Array<Record<string, Record<string, T[]>>>,
+  ): Record<string, Record<string, T[]>> {
+    return mapValues(objs[0], (object, key1) =>
+      mapValues(object, (value, key2) => [
+        ...value,
+        ...flatMap(tail(objs), it => it[key1]?.[key2]),
+      ]),
+    );
+  }
 
   ngOnInit() {
-    this.index = mapValues(this.item.spokenLanguages, it => keyBy(it, 'uuid'));
-    const [language, [speaker]] = first(
-      Object.entries(this.item.spokenLanguages),
-    )!;
+    this.index = this.merge(
+      map(this.item.audio, section =>
+        mapValues(groupBy(section, 'language'), value =>
+          groupBy(value, it => it.speaker.uuid),
+        ),
+      ),
+    );
+    const {language, speaker} = Object.values(
+      Object.values(this.index)[0],
+    )[0][0];
     this.languageValue = language;
     this.speakerValue = speaker.uuid;
 
     this.speakers = mapValues(
       keyBy(
-        flatMap(this.item.spokenLanguages, language => values(language)),
-        'uuid',
+        reject(
+          flatten(flatMap(this.index, language => values(language))),
+          isNil,
+        ),
+        it => it.speaker.uuid,
       ),
-      it => this.dataProvider.get(it.uuid) as Promise<Author>,
+      it => this.dataProvider.get(it.speaker.uuid) as Promise<Author>,
     );
   }
 }

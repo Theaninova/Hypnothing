@@ -6,7 +6,7 @@
     <h1>Background Noise</h1>
     <div>TODO;</div>
   </mat-drawer>
-  <mat-drawer-content *ngIf="'file:gamer_files_shooter' | fetch: 'file' as file">
+  <mat-drawer-content *ngIf="{uuid: 'file:gamer_files_shooter'} | fetch: 'file' as file">
     <hypnosis-file [hypnosisFile]="file"></hypnosis-file>
     <mat-divider></mat-divider>
     <h1>Configure your Hypnosis</h1>

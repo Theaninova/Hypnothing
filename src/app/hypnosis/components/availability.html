@@ -2,7 +2,7 @@
   <mat-button-toggle-group [(ngModel)]="languageValue" (valueChange)="languageChanged.emit(languageValue)">
     <mat-button-toggle
       [disabled]="!index[language][speakerValue]"
-      *ngFor="let language of item.spokenLanguages | keys"
+      *ngFor="let language of index | keys"
       [value]="language"
       >{{ language | uppercase }}</mat-button-toggle
     >
@@ -21,7 +21,11 @@
         {{ speaker?.additionalName || 'deleted author' | titlecase }}
       </div>
       <ng-template #loading>
-        <mat-spinner></mat-spinner>
+        <ngx-skeleton-loader
+          count="1"
+          appearance="line"
+          [theme]="{width: '30px', height: '10px', margin: '19px 0 0 0'}"
+        ></ngx-skeleton-loader>
       </ng-template>
     </mat-button-toggle>
   </mat-button-toggle-group>
