@@ -5,6 +5,10 @@ import {initial, keyBy, last} from 'lodash-es';
 // simplified version
 const audioFiles = [
   'audio:induction:mind_melt:theania:en',
+  'audio:trigger:rest_of_the_day:introduction:theania:en',
+  'audio:trigger:rest_of_the_day:reminder:theania:en',
+  'audio:trigger:string:introduction:theania:en',
+  'audio:trigger:string:reminder:theania:en',
   'audio:file:gamer_files_shooter:introduction:theania:en',
   'audio:file:gamer_files_shooter:introduction:theania:de',
   'audio:file:gamer_files_shooter:introduction:theania:es',

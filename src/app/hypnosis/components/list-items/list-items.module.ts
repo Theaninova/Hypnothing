@@ -5,10 +5,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import {BrowserModule} from '@angular/platform-browser';
 import {InductionListItemComponent} from './induction-list-item.component';
 import {HypnosisComponentsModule} from '../hypnosis-components.module';
+import {TriggerListItemComponent} from './trigger-list-item.component';
 
 @NgModule({
   declarations: [
     HypnosisListItemComponent,
+    TriggerListItemComponent,
     CreativeWorkListItemComponent,
     InductionListItemComponent,
   ],

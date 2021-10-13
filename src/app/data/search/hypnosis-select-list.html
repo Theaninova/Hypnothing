@@ -4,7 +4,7 @@
   [multiple]="multiple"
   (selectionChange)="change()"
 >
-  <mat-list-option *ngFor="let item of items" [value]="item">
+  <mat-list-option *ngFor="let item of items" [value]="item" style="height: fit-content; margin: 4px 0">
     <hypnosis-list-item
       style="width: 100%"
       [item]="item.thing!"

@@ -10,6 +10,46 @@ export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
     tags: [],
     type: 'trigger',
     triggerType: 'time limited',
-    audio: [[], []], // TODO
+    audio: [
+      [
+        {
+          uuid: 'audio:trigger:rest_of_the_day:introduction:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+      [
+        {
+          uuid: 'audio:trigger:rest_of_the_day:reminder:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+    ],
+  },
+  'trigger:string': {
+    title: 'String Trigger',
+    description: 'A trigger that is activated when you wear a piece of string',
+    author: {uuid: 'author:vive'},
+    uuid: 'trigger:string',
+    tags: [],
+    type: 'trigger',
+    triggerType: 'triggered',
+    audio: [
+      [
+        {
+          uuid: 'audio:trigger:string:introduction:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+      [
+        {
+          uuid: 'audio:trigger:string:reminder:theania:en',
+          language: 'en',
+          speaker: {uuid: 'author:theania'},
+        },
+      ],
+    ],
   },
 };
