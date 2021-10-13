@@ -1,5 +1,15 @@
-<mat-selection-list #list *ngIf="items | async as items" [multiple]="multiple" (selectionChange)="change()">
+<mat-selection-list
+  #list
+  *ngIf="searchItems | async as items"
+  [multiple]="multiple"
+  (selectionChange)="change()"
+>
   <mat-list-option *ngFor="let item of items" [value]="item">
-    <hypnosis-list-item [item]="item"></hypnosis-list-item>
+    <hypnosis-list-item
+      style="width: 100%"
+      [item]="item.thing!"
+      [showAvailability]="showAvailability"
+      (availabilityChanged)="merge(item, $event)"
+    ></hypnosis-list-item>
   </mat-list-option>
 </mat-selection-list>

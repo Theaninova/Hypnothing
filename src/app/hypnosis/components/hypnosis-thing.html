@@ -1,0 +1,24 @@
+<div *ngIf="item as item; else loading">
+  <!-- TODO: not found -->
+  <div [ngSwitch]="item.type">
+    <author *ngSwitchCase="'author'" [author]="$any(item)"></author>
+    <hypnosis-file *ngSwitchCase="'file'" [hypnosisFile]="$any(item)"></hypnosis-file>
+    <hypnosis-safety *ngSwitchCase="'safety'" [safety]="$any(item)"></hypnosis-safety>
+    <hypnosis-suggestion *ngSwitchCase="'suggestion'" [suggestion]="$any(item)"></hypnosis-suggestion>
+    <div *ngSwitchDefault>{{ item.type }}:{{ item.uuid }}</div>
+  </div>
+  <availability
+    *ngIf="showAvailability && hasAudio()"
+    [item]="$any(item)"
+    (speakerChanged)="emit({speaker: $event})"
+    (languageChanged)="emit({language: $event})"
+  ></availability>
+</div>
+<ng-template #loading>
+  <ngx-skeleton-loader [theme]="{height: '32px', width: '60%', margin: '0 0 16px'}"></ngx-skeleton-loader>
+  <ngx-skeleton-loader
+    *ngFor="let width of ['99%', '96%', '90%', '100%', '94%']"
+    [theme]="{height: '10px', width: width, margin: '0 0 5px'}"
+    count="1"
+  ></ngx-skeleton-loader>
+</ng-template>

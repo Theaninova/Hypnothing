@@ -7,7 +7,7 @@ import {CreativeWork} from '@wulkanat/hypnothing-core/lib/schema.org';
   styleUrls: ['creative-work.scss'],
 })
 export class CreativeWorkComponent {
-  @Input() creativeWork!: Promise<CreativeWork | undefined>;
+  @Input() creativeWork!: CreativeWork;
 
   @Input() includeTitle = true;
 }

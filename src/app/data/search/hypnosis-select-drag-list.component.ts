@@ -1,4 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   CdkDragDrop,
   copyArrayItem,
@@ -13,7 +20,7 @@ import {merge} from 'lodash-es';
   templateUrl: 'hypnosis-select-drag-list.html',
   styleUrls: ['hypnosis-select-drag-list.scss'],
 })
-export class HypnosisSelectDragListComponent implements OnInit {
+export class HypnosisSelectDragListComponent implements OnChanges {
   @Input() items?: Promise<HypnosisThing[]>;
 
   @Input() showAvailability = false;
@@ -26,12 +33,14 @@ export class HypnosisSelectDragListComponent implements OnInit {
 
   targetItems: HypnosisSectionConfiguration<HypnosisThing>[] = [];
 
-  ngOnInit() {
-    this.searchItems = this.items?.then(items =>
-      items.map(it => ({
-        thing: it,
-      })),
-    );
+  ngOnChanges(changes: SimpleChanges) {
+    if ('items' in changes) {
+      this.searchItems = this.items?.then(items =>
+        items.map(it => ({
+          thing: it,
+        })),
+      );
+    }
   }
 
   merge = merge;

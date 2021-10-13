@@ -1,4 +1,4 @@
-<mat-card class="mat-elevation-z0 mat-stroked-button" *ngIf="author | async as author; else loading">
+<mat-card class="mat-elevation-z0 mat-stroked-button" *ngIf="author as author">
   <mat-card-title>
     {{ author.additionalName }}
   </mat-card-title>
@@ -14,8 +14,3 @@
     </mat-chip-list>
   </mat-card-actions>
 </mat-card>
-<ng-template #loading>
-  <mat-card>
-    <mat-spinner></mat-spinner>
-  </mat-card>
-</ng-template>

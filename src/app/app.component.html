@@ -7,7 +7,7 @@
     <div>TODO;</div>
   </mat-drawer>
   <mat-drawer-content *ngIf="{uuid: 'file:gamer_files_shooter'} | fetch: 'file' as file">
-    <hypnosis-file [hypnosisFile]="file"></hypnosis-file>
+    <hypnosis-thing [item]="file | async"></hypnosis-thing>
     <mat-divider></mat-divider>
     <h1>Configure your Hypnosis</h1>
     <hypnosis-configurator [hypnosisFile]="file"></hypnosis-configurator>

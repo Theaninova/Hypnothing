@@ -59,8 +59,9 @@
       >
         <hypnosis-select-list
           [items]="triggerResults"
+          [showAvailability]="true"
           [multiple]="false"
-          (selectionChanged)="trigger = $event[0]"
+          (selectionChanged)="configuration.trigger = $any($event[0])"
         ></hypnosis-select-list>
       </hypnosis-search>
     </div>
@@ -81,7 +82,7 @@
           </mat-expansion-panel-header>
         </ng-template>
         <mat-panel-description>
-          <hypnosis-safety [safety]="safety"></hypnosis-safety>
+          <hypnosis-thing [item]="safety | async"></hypnosis-thing>
         </mat-panel-description>
       </mat-expansion-panel>
     </mat-accordion>
@@ -89,8 +90,10 @@
   <mat-step>
     <ng-template matStepLabel>Select Suggestions</ng-template>
 
-    <mat-accordion *ngIf="hypnosisFile | async as hypnosisFile">
-      <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions | fetchAll: 'suggestion'">
+    <mat-accordion *ngIf="configuration | async as configuration">
+      <mat-expansion-panel
+        *ngFor="let suggestion of configuration.file.thing!.suggestions | fetchAll: 'suggestion'"
+      >
         <mat-expansion-panel-header *ngIf="suggestion | async as suggestion">
           <mat-checkbox
             [checked]="true"
@@ -101,7 +104,7 @@
           </mat-checkbox>
         </mat-expansion-panel-header>
         <mat-panel-description>
-          <hypnosis-suggestion [suggestion]="suggestion"></hypnosis-suggestion>
+          <hypnosis-thing [item]="suggestion | async" [showAvailability]="true"></hypnosis-thing>
         </mat-panel-description>
       </mat-expansion-panel>
     </mat-accordion>

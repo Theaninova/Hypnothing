@@ -7,7 +7,7 @@ import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnos
   styleUrls: ['hypnosis-safety.scss'],
 })
 export class HypnosisSafetyComponent {
-  @Input() safety!: Promise<HypnosisSafetyGuard | undefined>;
+  @Input() safety!: HypnosisSafetyGuard;
 
   @Input() showTitle = true;
 }

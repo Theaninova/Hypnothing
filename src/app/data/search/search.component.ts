@@ -1,4 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {DataProvider} from '../data.provider';
 import {clone, merge} from 'lodash-es';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
@@ -8,7 +16,7 @@ import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
   templateUrl: 'search.html',
   styleUrls: ['search.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnChanges {
   @Input() forcedFilters: Record<string, string> = {};
 
   @Input() filters: Record<string, string> = {};
@@ -29,6 +37,12 @@ export class SearchComponent implements OnInit {
 
   async ngOnInit() {
     await this.search();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('forcedFilters' in changes || 'filters' in changes) {
+      this.search().then();
+    }
   }
 
   async search() {

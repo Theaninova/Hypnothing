@@ -21,6 +21,7 @@ import {GenderIconComponent} from './gender-icon.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {FormsModule} from '@angular/forms';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {HypnosisThingComponent} from './hypnosis-thing.component';
 
 /**
  * NOTE: NONE of the components contain the title to remain flexible
@@ -45,20 +46,22 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
     NgxSkeletonLoaderModule,
   ],
   declarations: [
-    HypnosisSuggestionComponent,
-    CreativeWorkComponent,
     AuthorComponent,
+    AvailabilityComponent,
+    CreativeWorkComponent,
+    GenderIconComponent,
     HypnosisFileComponent,
     HypnosisSafetyComponent,
-    GenderIconComponent,
-    AvailabilityComponent,
+    HypnosisSuggestionComponent,
+    HypnosisThingComponent,
   ],
   exports: [
-    HypnosisSuggestionComponent,
-    HypnosisSafetyComponent,
-    HypnosisFileComponent,
-    CreativeWorkComponent,
     AvailabilityComponent,
+    CreativeWorkComponent,
+    HypnosisFileComponent,
+    HypnosisSafetyComponent,
+    HypnosisSuggestionComponent,
+    HypnosisThingComponent,
   ],
 })
 export class HypnosisComponentsModule {}

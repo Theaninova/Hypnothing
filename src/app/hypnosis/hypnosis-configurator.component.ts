@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {fromPairs} from 'lodash-es';
+import {fromPairs, remove} from 'lodash-es';
 import {AuthorReference} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
@@ -46,6 +46,8 @@ export class HypnosisConfiguratorComponent implements OnInit {
   configuration!: Promise<HypnosisFileConfiguration>;
 
   constructor(private formBuilder: FormBuilder) {}
+
+  remove = remove;
 
   ngOnInit() {
     this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>

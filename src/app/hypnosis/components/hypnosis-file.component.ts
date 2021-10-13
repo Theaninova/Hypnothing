@@ -7,5 +7,5 @@ import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file
   styleUrls: ['hypnosis-file.scss'],
 })
 export class HypnosisFileComponent {
-  @Input() hypnosisFile!: Promise<HypnosisFile | undefined>;
+  @Input() hypnosisFile!: HypnosisFile;
 }
