@@ -91,20 +91,23 @@
     <ng-template matStepLabel>Select Suggestions</ng-template>
 
     <mat-accordion *ngIf="configuration | async as configuration">
-      <mat-expansion-panel
-        *ngFor="let suggestion of configuration.file.thing!.suggestions | fetchAll: 'suggestion'"
-      >
-        <mat-expansion-panel-header *ngIf="suggestion | async as suggestion">
+      <mat-expansion-panel *ngFor="let suggestion of configuration.suggestions">
+        <mat-expansion-panel-header *ngIf="suggestion as suggestion">
           <mat-checkbox
             [checked]="true"
-            [disabled]="suggestion.isRequired"
+            [disabled]="suggestion.thing?.isRequired"
+            (change)="suggestion.disabled = !$event.checked"
             (click)="$event.stopPropagation()"
           >
-            {{ suggestion.title }}
+            {{ suggestion.thing?.title }}
           </mat-checkbox>
         </mat-expansion-panel-header>
         <mat-panel-description>
-          <hypnosis-thing [item]="suggestion | async" [showAvailability]="true"></hypnosis-thing>
+          <hypnosis-thing
+            [item]="suggestion.thing"
+            [showAvailability]="true"
+            (availabilityChanged)="merge(suggestion, $event)"
+          ></hypnosis-thing>
         </mat-panel-description>
       </mat-expansion-panel>
     </mat-accordion>
@@ -124,3 +127,8 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
+
+<markdown
+  *ngIf="configuration | async as configuration"
+  [data]="'```' + stringify(configuration, null, 2) + '```'"
+></markdown>

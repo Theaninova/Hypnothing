@@ -1,4 +1,4 @@
-<div class="vertical">
+<div class="vertical" *ngIf="!noOptions; else noOptionsAvailable">
   <mat-button-toggle-group [(ngModel)]="languageValue" (valueChange)="languageChanged.emit(languageValue)">
     <mat-button-toggle
       [disabled]="!index[language][speakerValue]"
@@ -30,3 +30,6 @@
     </mat-button-toggle>
   </mat-button-toggle-group>
 </div>
+<ng-template #noOptionsAvailable>
+  <h3>There are no audio options</h3>
+</ng-template>

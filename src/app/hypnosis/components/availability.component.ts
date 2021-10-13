@@ -44,6 +44,8 @@ export class AvailabilityComponent implements OnInit {
 
   index!: Record<string, Record<Uuid, AudioOptions>>;
 
+  noOptions!: boolean;
+
   private merge<T>(
     objs: Array<Record<string, Record<string, T[]>>>,
   ): Record<string, Record<string, T[]>> {
@@ -56,6 +58,11 @@ export class AvailabilityComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (flatten(this.item.audio).length === 0) {
+      this.noOptions = true;
+      return;
+    }
+
     this.index = this.merge(
       map(this.item.audio, section =>
         mapValues(groupBy(section, 'language'), value =>
@@ -63,6 +70,7 @@ export class AvailabilityComponent implements OnInit {
         ),
       ),
     );
+
     const {language, speaker} = Object.values(
       Object.values(this.index)[0],
     )[0][0];

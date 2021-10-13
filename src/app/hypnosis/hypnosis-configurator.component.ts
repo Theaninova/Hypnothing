@@ -1,16 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {fromPairs, remove} from 'lodash-es';
+import {fromPairs, merge} from 'lodash-es';
 import {AuthorReference} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
 import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
 import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
 import {HypnosisWaker} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker';
+import {DataProvider} from '../data/data.provider';
 
 export interface HypnosisSectionConfiguration<T extends HypnosisThing> {
   thing?: T;
+  disabled?: boolean;
   language?: string;
   speaker?: AuthorReference;
 }
@@ -45,9 +47,14 @@ export class HypnosisConfiguratorComponent implements OnInit {
 
   configuration!: Promise<HypnosisFileConfiguration>;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    readonly dataProvider: DataProvider,
+  ) {}
 
-  remove = remove;
+  merge = merge;
+
+  stringify = JSON.stringify;
 
   ngOnInit() {
     this.suggestionsFormGroup = new Promise<FormGroup>(async resolve =>
@@ -73,5 +80,20 @@ export class HypnosisConfiguratorComponent implements OnInit {
         trigger: {},
       }),
     );
+
+    new Promise<HypnosisSectionConfiguration<HypnosisSuggestion>[]>(
+      async resolve => {
+        const file = await this.hypnosisFile;
+        if (!file) return resolve([]);
+
+        resolve(
+          (
+            await this.dataProvider.getAll(file.suggestions.map(it => it.uuid))
+          ).map(it => ({
+            thing: it as HypnosisSuggestion,
+          })),
+        );
+      },
+    ).then(async it => ((await this.configuration).suggestions = it));
   }
 }

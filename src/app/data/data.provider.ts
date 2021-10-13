@@ -66,4 +66,12 @@ export class DataProvider {
       uuid
     ] as T | undefined;
   }
+
+  async getAll<T extends HypnosisThing>(
+    uuids: Uuid[],
+  ): Promise<Array<T | undefined>> {
+    await wait(500);
+
+    return Promise.all(uuids.map(it => this.get<T>(it)));
+  }
 }
