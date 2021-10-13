@@ -1,4 +1,12 @@
-<div [ngSwitch]="item.type">
-  <induction-list-item *ngSwitchCase="'induction'" [item]="$any(item)"></induction-list-item>
-  <div *ngSwitchDefault>{{ item.type }}:{{ item.uuid }}</div>
+<div class="spacer">
+  <div [ngSwitch]="item.type">
+    <induction-list-item *ngSwitchCase="'induction'" [item]="$any(item)"></induction-list-item>
+    <div *ngSwitchDefault>{{ item.type }}:{{ item.uuid }}</div>
+  </div>
+  <availability
+    *ngIf="showAvailability && hasAudio()"
+    [item]="$any(item)"
+    (speakerChanged)="emit({speaker: $event})"
+    (languageChanged)="emit({language: $event})"
+  ></availability>
 </div>

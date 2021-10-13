@@ -21,7 +21,6 @@ import {
   tail,
   values,
 } from 'lodash-es';
-import {filter} from 'rxjs';
 
 @Component({
   selector: 'availability',

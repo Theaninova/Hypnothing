@@ -2,10 +2,10 @@
   <mat-step>
     <ng-template matStepLabel>Choose Language & Speaker</ng-template>
     <availability
-      *ngIf="hypnosisFile | async as hypnosisFile; else loading"
-      [item]="hypnosisFile"
-      (languageChanged)="language = $event"
-      (speakerChanged)="speaker = $event"
+      *ngIf="configuration | async as configuration; else loading"
+      [item]="configuration.file.thing!"
+      (languageChanged)="configuration.file.language = $event"
+      (speakerChanged)="configuration.file.speaker = $event"
     ></availability>
     <ng-template #loading>
       <div style="display: flex; flex-direction: column">
@@ -24,32 +24,46 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Choose your Induction</ng-template>
-    <hypnosis-search
-      *ngIf="language && speaker; else chooseLanguage"
-      [forcedFilters]="{type: 'induction'}"
-      [filters]="{'audio.language': language, 'audio.speaker.uuid': speaker.uuid}"
-      (resultsChanged)="inductionResults = $event"
-    >
-      <hypnosis-select-drag-list [items]="inductionResults" (selectionChanged)="inductions = $event">
-        <h2>Induction Selection</h2>
-      </hypnosis-select-drag-list>
-    </hypnosis-search>
+    <div *ngIf="configuration | async as configuration">
+      <hypnosis-search
+        *ngIf="configuration.file.language && configuration.file.speaker; else chooseLanguage"
+        [forcedFilters]="{type: 'induction'}"
+        [filters]="{
+          'audio.language': configuration.file.language,
+          'audio.speaker.uuid': configuration.file.speaker.uuid
+        }"
+        (resultsChanged)="inductionResults = $event"
+      >
+        <hypnosis-select-drag-list
+          [items]="inductionResults"
+          [showAvailability]="true"
+          (selectionChanged)="configuration.inductions = $any($event)"
+        >
+          <h2>Induction Selection</h2>
+        </hypnosis-select-drag-list>
+      </hypnosis-search>
+    </div>
     <ng-template #chooseLanguage> Please choose your language and speaker first. </ng-template>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Choose a Trigger</ng-template>
-    <hypnosis-search
-      *ngIf="speaker && language; else chooseLanguage"
-      [forcedFilters]="{type: 'trigger'}"
-      [filters]="{'audio.language': language, 'audio.speaker.uuid': speaker.uuid}"
-      (resultsChanged)="triggerResults = $event"
-    >
-      <hypnosis-select-list
-        [items]="triggerResults"
-        [multiple]="false"
-        (selectionChanged)="trigger = $event[0]"
-      ></hypnosis-select-list>
-    </hypnosis-search>
+    <div *ngIf="configuration | async as configuration">
+      <hypnosis-search
+        *ngIf="configuration.file.speaker && configuration.file.language; else chooseLanguage"
+        [forcedFilters]="{type: 'trigger'}"
+        [filters]="{
+          'audio.language': configuration.file.language,
+          'audio.speaker.uuid': configuration.file.speaker.uuid
+        }"
+        (resultsChanged)="triggerResults = $event"
+      >
+        <hypnosis-select-list
+          [items]="triggerResults"
+          [multiple]="false"
+          (selectionChanged)="trigger = $event[0]"
+        ></hypnosis-select-list>
+      </hypnosis-search>
+    </div>
     <ng-template #chooseLanguage> Please choose your language and speaker first. </ng-template>
   </mat-step>
   <mat-step>
@@ -75,27 +89,35 @@
   <mat-step>
     <ng-template matStepLabel>Select Suggestions</ng-template>
 
-    <form [formGroup]="suggestionsFormGroup" *ngIf="suggestionsFormGroup | async as suggestionsFormGroup">
-      <mat-accordion *ngIf="hypnosisFile | async as hypnosisFile">
-        <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions | fetchAll: 'suggestion'">
-          <mat-expansion-panel-header *ngIf="suggestion | async as suggestion">
-            <mat-checkbox
-              [formControlName]="suggestion.uuid"
-              [disabled]="suggestion.isRequired"
-              (click)="$event.stopPropagation()"
-            >
-              {{ suggestion.title }}
-            </mat-checkbox>
-          </mat-expansion-panel-header>
-          <mat-panel-description>
-            <hypnosis-suggestion [suggestion]="suggestion"></hypnosis-suggestion>
-          </mat-panel-description>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </form>
+    <mat-accordion *ngIf="hypnosisFile | async as hypnosisFile">
+      <mat-expansion-panel *ngFor="let suggestion of hypnosisFile.suggestions | fetchAll: 'suggestion'">
+        <mat-expansion-panel-header *ngIf="suggestion | async as suggestion">
+          <mat-checkbox
+            [checked]="true"
+            [disabled]="suggestion.isRequired"
+            (click)="$event.stopPropagation()"
+          >
+            {{ suggestion.title }}
+          </mat-checkbox>
+        </mat-expansion-panel-header>
+        <mat-panel-description>
+          <hypnosis-suggestion [suggestion]="suggestion"></hypnosis-suggestion>
+        </mat-panel-description>
+      </mat-expansion-panel>
+    </mat-accordion>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Configure your Waking</ng-template>
-    <hypnosis-search *ngIf="speaker && language" [forcedFilters]="{type: 'waker'}"> </hypnosis-search>
+    <div *ngIf="configuration | async as configuration">
+      <hypnosis-search
+        *ngIf="configuration.file.speaker && configuration.file.language"
+        [forcedFilters]="{type: 'waker'}"
+        [filters]="{
+          'audio.language': configuration.file.language,
+          'audio.speaker.uuid': configuration.file.speaker.uuid
+        }"
+      >
+      </hypnosis-search>
+    </div>
   </mat-step>
 </mat-vertical-stepper>

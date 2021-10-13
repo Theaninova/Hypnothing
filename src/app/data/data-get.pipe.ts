@@ -1,5 +1,4 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {DataProvider} from './data.provider';
 import {
   HypnosisThing,

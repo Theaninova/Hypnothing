@@ -23,8 +23,8 @@ export class SearchComponent implements OnInit {
     'author': 'person',
     'language': 'language',
     'audio.language': 'language',
-    'speaker': 'record_voice_over',
-    'audio.speaker': 'record_voice_over',
+    'speaker.uuid': 'record_voice_over',
+    'audio.speaker.uuid': 'record_voice_over',
   };
 
   async ngOnInit() {

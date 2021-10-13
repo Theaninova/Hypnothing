@@ -10,7 +10,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     audio: [[], [], [], []], // TODO
     type: 'suggestion',
     uuid: 'suggestion:trance_when_you_die',
-    isRequired: false,
+    isRequired: true,
     author: {uuid: 'author:vive'},
   },
   'suggestion:feel_every_hit': {

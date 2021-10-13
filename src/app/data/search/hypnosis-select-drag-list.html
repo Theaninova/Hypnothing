@@ -1,12 +1,17 @@
 <mat-list
-  *ngIf="items | async as results"
+  *ngIf="searchItems | async as results"
   cdkDropList
   cdkDropListSortingDisabled
   [cdkDropListConnectedTo]="targetList"
   [cdkDropListData]="results"
 >
   <div class="drag-drop-list-item" cdkDrag [cdkDragData]="item" *ngFor="let item of results">
-    <hypnosis-list-item [item]="item"></hypnosis-list-item>
+    <hypnosis-list-item
+      style="width: 100%"
+      [item]="item.thing!"
+      [showAvailability]="showAvailability"
+      (availabilityChanged)="merge(item, $event)"
+    ></hypnosis-list-item>
   </div>
 </mat-list>
 
@@ -19,6 +24,11 @@
   (cdkDropListDropped)="drop($event)"
 >
   <div class="drag-drop-list-item" cdkDrag *ngFor="let item of targetItems" [cdkDragData]="item">
-    <hypnosis-list-item [item]="item"></hypnosis-list-item>
+    <hypnosis-list-item
+      style="width: 100%"
+      [item]="item.thing!"
+      [showAvailability]="showAvailability"
+      (availabilityChanged)="merge(item, $event)"
+    ></hypnosis-list-item>
   </div>
 </mat-list>

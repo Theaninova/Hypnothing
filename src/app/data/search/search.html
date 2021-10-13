@@ -1,7 +1,7 @@
 <mat-form-field appearance="outline" style="width: 100%">
   <mat-label>Search</mat-label>
   <mat-chip-list #filterChips>
-    <mat-chip disabled *ngFor="let filter of forcedFilters | map">
+    <mat-chip *ngFor="let filter of forcedFilters | map" removable="false">
       <mat-chip-avatar *ngIf="fieldIconMap[filter.key] as icon">
         <mat-icon>{{ icon }}</mat-icon>
       </mat-chip-avatar>

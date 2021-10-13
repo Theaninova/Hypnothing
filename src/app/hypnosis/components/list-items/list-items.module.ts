@@ -4,6 +4,7 @@ import {CreativeWorkListItemComponent} from './creative-work-list-item.component
 import {MatChipsModule} from '@angular/material/chips';
 import {BrowserModule} from '@angular/platform-browser';
 import {InductionListItemComponent} from './induction-list-item.component';
+import {HypnosisComponentsModule} from '../hypnosis-components.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import {InductionListItemComponent} from './induction-list-item.component';
     CreativeWorkListItemComponent,
     InductionListItemComponent,
   ],
-  imports: [MatChipsModule, BrowserModule],
+  imports: [MatChipsModule, BrowserModule, HypnosisComponentsModule],
   exports: [HypnosisListItemComponent],
 })
 export class ListItemsModule {}
