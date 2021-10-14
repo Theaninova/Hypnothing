@@ -6,13 +6,15 @@
 
 An Angular web application for modular hypnosis. Its main features are (or will be):
 
-* Procedural generation & configuration of the binaurals
-* User preferences for background noise and binaurals
-* Choosing inductions
-* Selectively enabling suggestions
-* Optionally loop, add waker, or aftercare
-* Translation support (if they are provided)
-* Effective search for everything powered by Elasticsearch
+* [x] Procedural generation & configuration of the binaurals
+* [ ] User preferences for background noise and binaurals
+* [x] Choosing inductions
+* [x] Selectively enabling suggestions
+* [x] Optionally loop, add waker, or aftercare
+* [x] Translation support (if they are provided)
+* [ ] Effective search for everything powered by Elasticsearch
+
+You can view a demo of the prototype site [here](http://85.214.138.193:8080/).
 
 ## Development server
 

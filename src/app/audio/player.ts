@@ -123,7 +123,6 @@ export class HypnosisFileAudioPlayer<
   }
 
   async pause(suspendTime: T extends OfflineAudioContext ? number : undefined) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     await this.context.suspend(suspendTime!);
   }
 
