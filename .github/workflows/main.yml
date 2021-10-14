@@ -49,5 +49,3 @@ jobs:
           deploy_branch: gh_pages
           # If the action should run 'ng lint'
           run_lint: false
-        # Will not fail the step if anything fails
-        skip_failure: # optional
