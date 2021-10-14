@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/wulkanat/Hypnothing.svg)](https://github.com/wulkanat/Hypnothing/blob/master/LICENSE)
 ![build](https://github.com/wulkanat/Hypnothing/actions/workflows/main.yml/badge.svg)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/85.214.138.193:8080.svg)](http://85.214.138.193:8080/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/https/wulkanat.github.io/Hypnothing/.svg)](https://wulkanat.github.io/Hypnothing/)
 
 # Hypnothing
 
@@ -14,7 +14,7 @@ An Angular web application for modular hypnosis. Its main features are (or will 
 * [x] Translation support (if they are provided)
 * [ ] Effective search for everything powered by Elasticsearch
 
-You can view a demo of the prototype site [here](http://85.214.138.193:8080/).
+You can view a demo of the most current prototype [here](https://wulkanat.github.io/Hypnothing/).
 
 ## Development server
 
