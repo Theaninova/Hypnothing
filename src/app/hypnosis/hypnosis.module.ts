@@ -19,6 +19,7 @@ import {SearchModule} from '../data/search/search.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {ListItemsModule} from './components/list-items/list-items.module';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
     DragDropModule,
     ListItemsModule,
     NgxSkeletonLoaderModule,
+    MatButtonModule,
   ],
   exports: [HypnosisConfiguratorComponent],
   declarations: [HypnosisConfiguratorComponent],

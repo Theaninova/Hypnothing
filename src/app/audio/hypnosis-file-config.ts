@@ -1,5 +1,9 @@
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
-import {AuthorReference, Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {
+  AuthorReference,
+  CreativeWork,
+  Uuid,
+} from '@wulkanat/hypnothing-core/lib/schema.org';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
 import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
@@ -57,9 +61,21 @@ function add<T extends HypnosisThing>(
     );
 
     if (!file) {
-      console.error(
-        `A file is not available in ${config.language} from ${config.speaker?.uuid}`,
-      );
+      if (!config.language || !config.speaker) {
+        console.error(
+          `'${
+            (config.thing as unknown as CreativeWork)?.title
+          }' is has an incomplete configuration`,
+        );
+      } else {
+        console.error(
+          `'${
+            (config.thing as unknown as CreativeWork)?.title
+          }' is not available in ${config.language} from ${
+            config.speaker?.uuid
+          }`,
+        );
+      }
       continue;
     }
 

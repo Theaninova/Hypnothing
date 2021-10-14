@@ -1,7 +1,7 @@
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
     <h1>Binaural Beat</h1>
-    <binaural-beat-config></binaural-beat-config>
+    <binaural-beat-config (configChanged)="binauralConfig = $event"></binaural-beat-config>
     <mat-divider></mat-divider>
     <h1>Background Noise</h1>
     <div>TODO;</div>
@@ -10,7 +10,15 @@
     <hypnosis-thing [item]="file | async"></hypnosis-thing>
     <mat-divider></mat-divider>
     <h1>Configure your Hypnosis</h1>
-    <hypnosis-configurator [hypnosisFile]="file"></hypnosis-configurator>
+    <hypnosis-configurator
+      [hypnosisFile]="file"
+      (configured)="hypnosisFileConfiguration = $event"
+    ></hypnosis-configurator>
     <h2>Play!</h2>
+    <audio-player
+      *ngIf="hypnosisFileConfiguration as config"
+      [binauralConfig]="binauralConfig"
+      [hypnosisFile]="config"
+    ></audio-player>
   </mat-drawer-content>
 </mat-drawer-container>

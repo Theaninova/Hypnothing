@@ -1,4 +1,11 @@
-import {Component, Input, OnInit, Optional} from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  Optional,
+  SimpleChanges,
+} from '@angular/core';
 import {BinauralBeatConfig} from './binaural';
 import {AudioFile} from '@wulkanat/hypnothing-core/lib/audio';
 import {DataProvider} from '../data/data.provider';
@@ -15,7 +22,7 @@ import {zip} from 'lodash-es';
   templateUrl: 'audio-player.html',
   styleUrls: ['audio-player.scss'],
 })
-export class AudioPlayerComponent implements OnInit {
+export class AudioPlayerComponent implements OnInit, OnChanges {
   @Input() hypnosisFile!: HypnosisFileConfiguration;
 
   @Optional() @Input() binauralConfig?: BinauralBeatConfig;
@@ -28,7 +35,7 @@ export class AudioPlayerComponent implements OnInit {
 
   constructor(private dataProvider: DataProvider) {}
 
-  ngOnInit() {
+  fetchAudioFiles() {
     const requestedFiles = composeAudioFileUuidsFromConfig(this.hypnosisFile);
 
     this.audioFiles = this.dataProvider
@@ -46,7 +53,9 @@ export class AudioPlayerComponent implements OnInit {
           })
           .map(([_, result]) => result!),
       );
+  }
 
+  reconfigure() {
     this.audioPlayer = this.audioFiles.then(
       files =>
         new HypnosisFileAudioPlayer({
@@ -55,5 +64,20 @@ export class AudioPlayerComponent implements OnInit {
           gain: 0.4,
         }),
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('hypnosisFile' in changes) {
+      this.fetchAudioFiles();
+    }
+
+    if ('binauralConfig' in changes) {
+      this.reconfigure();
+    }
+  }
+
+  ngOnInit() {
+    this.fetchAudioFiles();
+    this.reconfigure();
   }
 }

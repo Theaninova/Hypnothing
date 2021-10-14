@@ -128,7 +128,15 @@
   </mat-step>
 </mat-vertical-stepper>
 
-<markdown
+<button
+  *ngIf="configuration | async as configuration"
+  mat-stroked-button
+  color="primary"
+  (click)="configured.emit(configuration)"
+>
+  Submit
+</button>
+<!--<markdown
   *ngIf="configuration | async as configuration"
   [data]="'```' + stringify(configuration, null, 2) + '```'"
-></markdown>
+></markdown>-->

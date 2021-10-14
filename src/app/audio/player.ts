@@ -47,10 +47,12 @@ export class HypnosisFileAudioPlayer<
   private calcTotalProgress() {
     this.totalProgress = this.progress?.reduce(
       (accumulator, current) => {
-        accumulator.percent += current.percent;
-        accumulator.transferred += current.transferred;
-        if (current.total) {
-          accumulator.total! += current.total;
+        if (current) {
+          accumulator.percent += current.percent / this.progress!.length;
+          accumulator.transferred += current.transferred;
+          if (current.total) {
+            accumulator.total! += current.total;
+          }
         }
 
         return accumulator;
@@ -105,8 +107,12 @@ export class HypnosisFileAudioPlayer<
         async (source, index) =>
           await axios.get(source, {
             responseType: 'arraybuffer',
-            onDownloadProgress: progress => {
-              this.progress![index] = progress;
+            onDownloadProgress: (progress: ProgressEvent) => {
+              this.progress![index] = {
+                total: progress.total,
+                transferred: progress.loaded,
+                percent: progress.loaded / progress.total,
+              };
               this.calcTotalProgress();
             },
           }),

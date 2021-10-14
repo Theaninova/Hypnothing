@@ -1,4 +1,10 @@
-import {Component} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   BinauralBeat,
   BinauralBeatConfig,
@@ -14,7 +20,7 @@ import {bufferToWave} from './wav';
   templateUrl: 'binaural-beat-config.html',
   styleUrls: ['binaural-beat-config.scss'],
 })
-export class BinauralBeatConfigComponent {
+export class BinauralBeatConfigComponent implements OnChanges {
   frequencies = [
     {frequency: 'β-Wave (Alert)', id: 'beta', value: 14, min: 13, max: 16},
     {frequency: 'α-Wave (Relaxed)', id: 'alpha', value: 10, min: 8, max: 12},
@@ -39,6 +45,14 @@ export class BinauralBeatConfigComponent {
       theta: 2,
     },
   };
+
+  @Output() configChanged = new EventEmitter<BinauralBeatConfig>();
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('config' in changes) {
+      this.configChanged.emit(this.config);
+    }
+  }
 
   private reset() {
     this.playPreview();

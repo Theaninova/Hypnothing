@@ -15,7 +15,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [BinauralBeatConfigComponent, AudioPlayerComponent],
-  exports: [BinauralBeatConfigComponent],
+  exports: [BinauralBeatConfigComponent, AudioPlayerComponent],
   imports: [
     BrowserModule,
     MatButtonModule,

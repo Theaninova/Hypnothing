@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {FormBuilder} from '@angular/forms';
 import {merge} from 'lodash-es';
@@ -17,6 +17,9 @@ import {
 })
 export class HypnosisConfiguratorComponent implements OnInit {
   @Input() hypnosisFile!: Promise<HypnosisFile | undefined>;
+
+  @Output() configured: EventEmitter<HypnosisFileConfiguration> =
+    new EventEmitter();
 
   inductionResults!: Promise<HypnosisThing[]>;
 
