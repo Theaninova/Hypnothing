@@ -1,3 +1,6 @@
+[![GitHub license](https://img.shields.io/github/license/wulkanat/Hypnothing.svg)](https://github.com/wulkanat/Hypnothing/blob/master/LICENSE)
+![build](https://github.com/wulkanat/Hypnothing/actions/workflows/main.yml/badge.svg)
+
 # Hypnothing
 
 An Angular web application for modular hypnosis. Its main features are (or will be):
