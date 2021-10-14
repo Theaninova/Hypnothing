@@ -3,17 +3,16 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
-import {HypnosisSectionConfiguration} from '../hypnosis-configurator.component';
 import {merge} from 'lodash-es';
 import {
   AudioOptions,
   ThingWithAudio,
 } from '@wulkanat/hypnothing-core/lib/audio';
+import {HypnosisSectionConfiguration} from '../../audio/hypnosis-file-config';
 
 @Component({
   selector: 'hypnosis-thing',

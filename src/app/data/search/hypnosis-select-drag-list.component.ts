@@ -12,8 +12,8 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
-import {HypnosisSectionConfiguration} from '../../hypnosis/hypnosis-configurator.component';
 import {merge} from 'lodash-es';
+import {HypnosisSectionConfiguration} from '../../audio/hypnosis-file-config';
 
 @Component({
   selector: 'hypnosis-select-drag-list',

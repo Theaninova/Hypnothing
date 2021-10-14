@@ -26,11 +26,18 @@ export interface HypnosisFileConfiguration {
   waking: HypnosisSectionConfiguration<HypnosisWaker>[];
 }
 
+export interface HypnosisAudioQueueElement {
+  uuid: Uuid;
+  source: HypnosisThing;
+  speaker: AuthorReference;
+  language: string;
+}
+
 /**
  *
  */
 function add<T extends HypnosisThing>(
-  array: Uuid[],
+  array: HypnosisAudioQueueElement[],
   config: HypnosisSectionConfiguration<T>,
   indices: number[],
 ) {
@@ -56,7 +63,12 @@ function add<T extends HypnosisThing>(
       continue;
     }
 
-    array.push(file.uuid);
+    array.push({
+      uuid: file.uuid,
+      source: config.thing,
+      language: config.language!,
+      speaker: config.speaker!,
+    });
   }
 }
 
@@ -65,8 +77,8 @@ function add<T extends HypnosisThing>(
  */
 export function composeAudioFileUuidsFromConfig(
   config: HypnosisFileConfiguration,
-): string[] {
-  const uuids: Uuid[] = [];
+): HypnosisAudioQueueElement[] {
+  const uuids: HypnosisAudioQueueElement[] = [];
 
   add(uuids, config.file, [0]); // introduction
   config.suggestions.map(it => add(uuids, it, [0])); // suggestion overview

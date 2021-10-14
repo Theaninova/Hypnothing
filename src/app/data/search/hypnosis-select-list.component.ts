@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
 import {MatSelectionList} from '@angular/material/list';
-import {HypnosisSectionConfiguration} from '../../hypnosis/hypnosis-configurator.component';
 import {merge} from 'lodash-es';
+import {HypnosisSectionConfiguration} from '../../audio/hypnosis-file-config';
 
 @Component({
   selector: 'hypnosis-select-list',

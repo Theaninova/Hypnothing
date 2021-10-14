@@ -1,59 +1,59 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  Optional,
-  ViewChild,
-} from '@angular/core';
+import {Component, Input, OnInit, Optional} from '@angular/core';
 import {BinauralBeatConfig} from './binaural';
 import {AudioFile} from '@wulkanat/hypnothing-core/lib/audio';
 import {DataProvider} from '../data/data.provider';
 import {
   composeAudioFileUuidsFromConfig,
+  HypnosisAudioQueueElement,
   HypnosisFileConfiguration,
 } from './hypnosis-file-config';
+import {HypnosisFileAudioPlayer} from './player';
+import {zip} from 'lodash-es';
 
 @Component({
   selector: 'audio-player',
   templateUrl: 'audio-player.html',
   styleUrls: ['audio-player.scss'],
 })
-export class AudioPlayerComponent implements OnInit, AfterViewInit {
+export class AudioPlayerComponent implements OnInit {
   @Input() hypnosisFile!: HypnosisFileConfiguration;
 
   @Optional() @Input() binauralConfig?: BinauralBeatConfig;
 
-  @ViewChild('audioFiles') audioFiles!: ElementRef<HTMLDivElement>;
+  audioPlayer!: Promise<HypnosisFileAudioPlayer>;
 
-  sources!: Promise<Array<AudioFile | undefined>>;
+  audioFiles!: Promise<AudioFile[]>;
+
+  incomplete: HypnosisAudioQueueElement[] = [];
 
   constructor(private dataProvider: DataProvider) {}
 
   ngOnInit() {
-    this.sources = this.dataProvider.getAll<AudioFile>(
-      composeAudioFileUuidsFromConfig(this.hypnosisFile),
-    );
-  }
+    const requestedFiles = composeAudioFileUuidsFromConfig(this.hypnosisFile);
 
-  async ngAfterViewInit() {
-    await this.sources;
-    const context = new AudioContext();
+    this.audioFiles = this.dataProvider
+      .getAll<AudioFile>(requestedFiles.map(it => it.uuid))
+      .then(files =>
+        zip(requestedFiles, files)
+          .filter(([element, result]) => {
+            if (!result) {
+              console.error(`Audio not found: ${element!.uuid}`);
+              this.incomplete.push(element!);
 
-    const audioElements: HTMLAudioElement[] = [];
-
-    for (let i = 0; i < this.audioFiles.nativeElement.children.length; i++) {
-      audioElements.push(
-        this.audioFiles.nativeElement.children[i] as HTMLAudioElement,
+              return false;
+            }
+            return true;
+          })
+          .map(([_, result]) => result!),
       );
-    }
 
-    for (const element of audioElements) {
-      const source = context.createMediaElementSource(element);
-      source.connect(context.destination);
-      element.play();
-      element.addEventListener('ended', () => {}); // TODO
-    }
+    this.audioPlayer = this.audioFiles.then(
+      files =>
+        new HypnosisFileAudioPlayer({
+          binaural: this.binauralConfig,
+          sources: files,
+          gain: 0.4,
+        }),
+    );
   }
 }

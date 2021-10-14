@@ -11,6 +11,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AudioPlayerComponent} from './audio-player.component';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [BinauralBeatConfigComponent, AudioPlayerComponent],
@@ -26,6 +27,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatTableModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
   ],
 })
 export class AudioModule {}
