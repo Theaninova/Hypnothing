@@ -46,7 +46,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: dist
-      - run: ls
       - name: GitHub Pages
         # You may pin to the exact commit or the version.
         # uses: crazy-max/ghaction-github-pages@db4476a01402e1a7ce05f41832040eef16d14925
@@ -55,6 +54,6 @@ jobs:
           # Git branch where assets will be deployed
           target_branch: gh_pages
           # Build directory to deploy
-          build_dir: ./Hypnothing/dist
+          build_dir: ./Hypnothing/Hypnothing//dist
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
