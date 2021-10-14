@@ -47,5 +47,6 @@ jobs:
           github_access_token: ${{ secrets.ACCESS_TOKEN }}
           # branch on which the angular build will be deployed
           deploy_branch: gh_pages
+          base_ref: /Hypnothing/
           # If the action should run 'ng lint'
           run_lint: false
