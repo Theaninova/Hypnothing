@@ -41,6 +41,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     uuid: 'suggestion:trance_when_you_die',
     isRequired: true,
     author: {uuid: 'author:vive'},
+    translations: {},
   },
   'suggestion:feel_every_hit': {
     title: 'Feel every hit',
@@ -52,6 +53,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     uuid: 'suggestion:feel_every_hit',
     isRequired: false,
     author: {uuid: 'author:vive'},
+    translations: {},
   },
   'suggestion:get_dizzy_when_low': {
     title: 'Get dizzy when low',
@@ -63,6 +65,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     uuid: 'suggestion:get_dizzy_when_low',
     isRequired: false,
     author: {uuid: 'author:vive'},
+    translations: {},
   },
   'suggestion:get_rewarded_for_special_kills': {
     title: 'Get rewarded for special kills',
@@ -74,6 +77,7 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     uuid: 'suggestion:get_rewarded_for_special_kills',
     isRequired: false,
     author: {uuid: 'author:vive'},
+    translations: {},
   },
   'suggestion:get_rewarded_for_achievements_and_accomplishments': {
     title: 'Get rewarded for achievements and accomplishements',
@@ -85,5 +89,6 @@ export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
     uuid: 'suggestion:get_rewarded_for_achievements_and_accomplishments',
     isRequired: false,
     author: {uuid: 'author:vive'},
+    translations: {},
   },
 };

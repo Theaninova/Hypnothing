@@ -27,6 +27,13 @@ export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
       ],
     ],
     tags: ['limiter'],
+    translations: {
+      de: {
+        title: 'Nie zu stark',
+        description: 'Hier wäre die deutsche Beschreibung',
+        type: 'Sicherheitsmaßnahme' as never,
+      },
+    },
   },
   'safety:some_other_safety': {
     title: 'Some other safety',
@@ -53,5 +60,6 @@ export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
       ],
     ],
     tags: ['other', 'tags'],
+    translations: {},
   },
 };

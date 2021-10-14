@@ -53,5 +53,15 @@ I could imagine versions with more effect or more permanence, as well as version
       {uuid: 'suggestion:get_rewarded_for_achievements_and_accomplishments'},
     ],
     uuid: 'file:gamer_files_shooter',
+    translations: {
+      en: {
+        type: 'hypnosis file' as never,
+      },
+      de: {
+        title: 'Gamer Dateien: Shooter',
+        description: `Hier wäre jetzt die deutsche Übersetzung`,
+        type: 'Hypnose Datei' as never,
+      },
+    },
   },
 };

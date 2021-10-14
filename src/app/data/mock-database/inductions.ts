@@ -18,5 +18,13 @@ export const INDUCTIONS: Record<Uuid, TranceInduction> = {
       ],
     ],
     type: 'induction',
+    translations: {
+      de: {
+        title: 'Gehirnschmelze',
+        description:
+          'Du atmest ein Nervengas ein, das langsam deine Gehirn verschmilzt.',
+        type: 'Induktion' as never,
+      },
+    },
   },
 };

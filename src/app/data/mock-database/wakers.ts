@@ -9,5 +9,6 @@ export const WAKERS: Record<Uuid, HypnosisWaker> = {
     type: 'waker',
     uuid: 'waker:count_up_long',
     audio: [[]], // TODO
+    translations: {},
   },
 };

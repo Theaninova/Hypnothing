@@ -9,5 +9,6 @@ export const WARNINGS: Record<Uuid, HypnosisWarning> = {
     uuid: 'warning:dummy',
     author: {uuid: 'author:theania'},
     type: 'warning',
+    translations: {},
   },
 };

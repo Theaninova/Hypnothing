@@ -8,6 +8,16 @@ export const AUTHORS: Record<Uuid, Author> = {
     gender: 'Trans MtF',
     type: 'author',
     uuid: 'author:theania',
+    translations: {
+      en: {
+        gender: 'trans MtF',
+        type: 'author',
+      },
+      de: {
+        gender: 'Trans MzF',
+        type: 'Autor' as never,
+      },
+    },
   },
   'author:vive': {
     givenName: 'Vincent',
@@ -16,5 +26,15 @@ export const AUTHORS: Record<Uuid, Author> = {
     gender: 'male',
     type: 'author',
     uuid: 'author:vive',
+    translations: {
+      en: {
+        gender: 'male',
+        type: 'author',
+      },
+      de: {
+        gender: 'Mann',
+        type: 'Autor' as never,
+      },
+    },
   },
 };

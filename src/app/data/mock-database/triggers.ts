@@ -26,6 +26,7 @@ export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
         },
       ],
     ],
+    translations: {},
   },
   'trigger:string': {
     title: 'String Trigger',
@@ -51,5 +52,6 @@ export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
         },
       ],
     ],
+    translations: {},
   },
 };

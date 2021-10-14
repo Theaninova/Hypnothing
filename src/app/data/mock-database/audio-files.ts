@@ -49,6 +49,16 @@ export const AUDIO_FILES: Record<Uuid, AudioFile> = keyBy(
       },
     ],
     uuid: file,
+    translations: {
+      en: {
+        language: last(file.split(':'))!.toUpperCase(),
+        type: 'Audio File' as never,
+      },
+      de: {
+        language: last(file.split(':'))!.toUpperCase(),
+        type: 'Audiodatei' as never,
+      },
+    },
   })),
   'uuid',
 );
