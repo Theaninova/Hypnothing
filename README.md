@@ -1,5 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/wulkanat/Hypnothing.svg)](https://github.com/wulkanat/Hypnothing/blob/master/LICENSE)
 ![build](https://github.com/wulkanat/Hypnothing/actions/workflows/main.yml/badge.svg)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/85.214.138.193:8080.svg)](http://85.214.138.193:8080/)
 
 # Hypnothing
 
