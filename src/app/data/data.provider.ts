@@ -56,6 +56,7 @@ export class DataProvider {
   async list<T extends HypnosisTypeEnumerator>(
     type: T,
   ): Promise<SpecificHypnosisType<T>[]> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return Object.values(MOCK_DATABASE[type]!) as SpecificHypnosisType<T>[];
   }
 

@@ -22,7 +22,7 @@
     "@angular/platform-browser": "12.2.9",
     "@angular/platform-browser-dynamic": "12.2.9",
     "@angular/router": "12.2.9",
-    "@wulkanat/hypnothing-core": "1.10.1",
+    "@wulkanat/hypnothing-core": "1.10.2",
     "ngx-markdown": "12.0.1",
     "ngx-skeleton-loader": "4.0.0",
     "audio-decode": "1.4.0",
