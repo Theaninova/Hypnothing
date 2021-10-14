@@ -1,31 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {fromPairs, merge} from 'lodash-es';
-import {AuthorReference} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {FormBuilder} from '@angular/forms';
+import {merge} from 'lodash-es';
 import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
-import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
-import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
 import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
-import {HypnosisWaker} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker';
 import {DataProvider} from '../data/data.provider';
-
-export interface HypnosisSectionConfiguration<T extends HypnosisThing> {
-  thing?: T;
-  disabled?: boolean;
-  language?: string;
-  speaker?: AuthorReference;
-}
-
-export interface HypnosisFileConfiguration {
-  includeBinaural: boolean;
-  includeBackground: boolean;
-  file: HypnosisSectionConfiguration<HypnosisFile>;
-  inductions: HypnosisSectionConfiguration<TranceInduction>[];
-  trigger: HypnosisSectionConfiguration<HypnosisTrigger>;
-  suggestions: HypnosisSectionConfiguration<HypnosisSuggestion>[];
-  waking: HypnosisSectionConfiguration<HypnosisWaker>[];
-}
+import {
+  HypnosisFileConfiguration,
+  HypnosisSectionConfiguration,
+} from '../audio/hypnosis-file-config';
 
 @Component({
   selector: 'hypnosis-configurator',
@@ -61,6 +44,7 @@ export class HypnosisConfiguratorComponent implements OnInit {
         inductions: [],
         waking: [],
         suggestions: [],
+        safeties: [],
         trigger: {},
       }),
     );

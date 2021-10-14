@@ -1,0 +1,4 @@
+<div #audioFiles *ngIf="sources | async as sources; else loading">
+  <audio [src]="source.src" *ngFor="let source of sources" preload="auto"></audio>
+</div>
+<ng-template #loading><mat-progress-bar mode="buffer"></mat-progress-bar></ng-template>
