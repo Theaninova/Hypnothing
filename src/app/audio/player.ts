@@ -1,6 +1,7 @@
 import {AudioFile} from '@wulkanat/hypnothing-core/lib/audio';
 import {BinauralBeat, BinauralBeatConfig} from './binaural';
 import axios from 'axios';
+import {reduce} from 'lodash-es';
 
 export interface HypnosisFileAudioPlayerConfig<
   T extends AudioContext | OfflineAudioContext = AudioContext,
@@ -38,17 +39,22 @@ export class HypnosisFileAudioPlayer<
 
   private readonly binaural?: BinauralBeat<T>;
 
-  progress?: Progress[];
+  downloadProgress?: Progress[];
 
-  totalProgress?: Progress;
+  totalDownloadProgress?: Progress;
+
+  totalDuration = 0;
 
   sectionLengths: Promise<number[]>;
 
+  playing = false;
+
   private calcTotalProgress() {
-    this.totalProgress = this.progress?.reduce(
+    this.totalDownloadProgress = this.downloadProgress?.reduce(
       (accumulator, current) => {
         if (current) {
-          accumulator.percent += current.percent / this.progress!.length;
+          accumulator.percent +=
+            current.percent / this.downloadProgress!.length;
           accumulator.transferred += current.transferred;
           if (current.total) {
             accumulator.total! += current.total;
@@ -61,6 +67,23 @@ export class HypnosisFileAudioPlayer<
     );
   }
 
+  /**
+   * Schedule the play times for each audio node
+   *
+   * @returns number the cumulative time file will take
+   */
+  private async schedulePlay(): Promise<number> {
+    return reduce(
+      await this.sources,
+      (accumulator, current) => {
+        current.start(accumulator);
+
+        return accumulator + current.buffer!.duration;
+      },
+      0,
+    );
+  }
+
   constructor(private options: HypnosisFileAudioPlayerConfig<T>) {
     this.context =
       options.context ??
@@ -68,6 +91,7 @@ export class HypnosisFileAudioPlayer<
         latencyHint: 'interactive',
         sampleRate: 48_000,
       }) as T);
+    this.pause().then();
     this.gainConstantSourceNode = new ConstantSourceNode(this.context, {
       offset: options.gain,
     });
@@ -97,10 +121,12 @@ export class HypnosisFileAudioPlayer<
       options.binaural.context = this.context;
       this.binaural = new BinauralBeat(options.binaural);
     }
+
+    this.schedulePlay().then(it => (this.totalDuration = it));
   }
 
   async fetchAll(sources: string[]): Promise<ArrayBuffer[]> {
-    this.progress = Array.from({length: sources.length});
+    this.downloadProgress = Array.from({length: sources.length});
 
     const results = await Promise.all(
       sources.map(
@@ -108,7 +134,7 @@ export class HypnosisFileAudioPlayer<
           await axios.get(source, {
             responseType: 'arraybuffer',
             onDownloadProgress: (progress: ProgressEvent) => {
-              this.progress![index] = {
+              this.downloadProgress![index] = {
                 total: progress.total,
                 transferred: progress.loaded,
                 percent: progress.loaded / progress.total,
@@ -122,12 +148,20 @@ export class HypnosisFileAudioPlayer<
     return results.map(response => response.data as ArrayBuffer);
   }
 
-  async pause(suspendTime: T extends OfflineAudioContext ? number : undefined) {
-    await this.context.suspend(suspendTime!);
+  get progress(): number {
+    return this.context.currentTime / this.totalDuration;
+  }
+
+  async pause() {
+    if (this.context instanceof AudioContext) {
+      await this.context.suspend();
+      this.playing = false;
+    }
   }
 
   async play() {
     await this.context.resume();
+    this.playing = true;
   }
 
   async destroy() {

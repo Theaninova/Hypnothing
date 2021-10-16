@@ -1,14 +1,17 @@
 <div *ngIf="audioPlayer | async as audioPlayer; else loading">
+  <div>Duration: {{ audioPlayer.totalDuration }}s</div>
   <mat-progress-bar
     mode="buffer"
-    [value]="0"
-    [bufferValue]="(audioPlayer.totalProgress?.percent || 0) * 100"
+    [value]="audioPlayer.progress * 100"
+    [bufferValue]="(audioPlayer.totalDownloadProgress?.percent || 0) * 100"
   ></mat-progress-bar>
   <p>
-    {{ (audioPlayer.totalProgress?.transferred || 0) / 1000 }}KB /
-    {{ (audioPlayer.totalProgress?.total || 0) / 1000 }}KB
+    {{ (audioPlayer.totalDownloadProgress?.transferred || 0) / 1000 }}KB /
+    {{ (audioPlayer.totalDownloadProgress?.total || 0) / 1000 }}KB
   </p>
-  <button mat-icon-button><mat-icon>play_arrow</mat-icon></button>
+  <button mat-icon-button (click)="audioPlayer.playing ? audioPlayer.pause() : audioPlayer.play()">
+    <mat-icon>{{ audioPlayer.playing ? 'pause' : 'play_arrow' }}</mat-icon>
+  </button>
 </div>
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
