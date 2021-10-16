@@ -95,7 +95,11 @@ export class BinauralBeat<T extends AudioContext | OfflineAudioContext> {
     this.gainConstantSourceNode.start();
   }
 
-  modify(options: TrueRecursivePartial<BinauralBeatConfig>, smooth = 0.5) {
+  modify(
+    options: TrueRecursivePartial<BinauralBeatConfig>,
+    smooth = 0.5,
+    at?: number,
+  ) {
     this.options = merge(this.options, options);
     const binauralFrequency = this.toBinauralFrequency(
       this.options.binauralFrequency,
@@ -117,11 +121,11 @@ export class BinauralBeat<T extends AudioContext | OfflineAudioContext> {
 
         leftOscillator.frequency.exponentialRampToValueAtTime(
           frequency! - binauralFrequency / 2,
-          currentTime + smooth,
+          (at ?? currentTime) + smooth,
         );
         rightOscillator.frequency.exponentialRampToValueAtTime(
           frequency! + binauralFrequency / 2,
-          currentTime + smooth,
+          (at ?? currentTime) + smooth,
         );
       }
     }
@@ -129,7 +133,7 @@ export class BinauralBeat<T extends AudioContext | OfflineAudioContext> {
     if (options.gain) {
       this.gainConstantSourceNode.offset.exponentialRampToValueAtTime(
         options.gain,
-        currentTime + smooth,
+        (at ?? currentTime) + smooth,
       );
     }
   }

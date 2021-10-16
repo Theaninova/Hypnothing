@@ -34,9 +34,9 @@ export const AUDIO_FILES: Record<Uuid, AudioFile> = keyBy(
     binauralKeyframes: [
       {
         at: '00:00',
-        in: 10,
+        in: 0.4,
         value: {
-          volume: 'inherit',
+          volume: 'normal',
           wave: 'theta',
         },
       },

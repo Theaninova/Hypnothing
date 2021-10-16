@@ -1,7 +1,7 @@
-import {AudioFile} from '@wulkanat/hypnothing-core/lib/audio';
+import {AudioFile, VolumeChoice} from '@wulkanat/hypnothing-core/lib/audio';
 import {BinauralBeat, BinauralBeatConfig} from './binaural';
 import axios from 'axios';
-import {reduce} from 'lodash-es';
+import {reduce, zip, last} from 'lodash-es';
 
 export interface HypnosisFileAudioPlayerConfig<
   T extends AudioContext | OfflineAudioContext = AudioContext,
@@ -20,6 +20,35 @@ export interface HypnosisFileAudioPlayerConfig<
   binaural?: BinauralBeatConfig<T>;
 
   // TODO: background
+}
+
+/**
+ * Parse volume keyframes
+ */
+function volumeKeyframe(vol: VolumeChoice): number {
+  switch (vol) {
+    case 'inherit':
+      return 0; // TODO
+    case 'prefetch':
+      return 0; // TODO
+    case 'off':
+      return 0;
+    case 'loud':
+      return 0.3;
+    case 'normal':
+      return 0.6;
+    case 'silent':
+      return 0.01;
+  }
+}
+
+/**
+ * Parse audio timestamps
+ */
+function audioTimestamp(timestamp: string): number {
+  const [minutes, seconds] = timestamp.split(':');
+
+  return Number.parseInt(minutes) + Number.parseInt(seconds) * 60;
 }
 
 export interface Progress {
@@ -74,14 +103,32 @@ export class HypnosisFileAudioPlayer<
    */
   private async schedulePlay(): Promise<number> {
     return reduce(
-      await this.sources,
-      (accumulator, current) => {
-        current.start(accumulator);
+      zip(await this.sources, this.options.sources),
+      (accumulator, [source, info]) => {
+        reduce(
+          info!.binauralKeyframes,
+          (previous, keyframe) => {
+            this.binaural?.modify(
+              {
+                gain: volumeKeyframe(keyframe.value.volume),
+                binauralFrequency: keyframe.value.wave,
+              },
+              keyframe.in,
+              accumulator.time + audioTimestamp(keyframe.at),
+            );
 
-        return accumulator + current.buffer!.duration;
+            return keyframe;
+          },
+          last(accumulator.info?.binauralKeyframes),
+        );
+        source!.start(accumulator.time);
+        const next = accumulator.time + source!.buffer!.duration;
+        source!.stop(next);
+
+        return {time: next, info: info};
       },
-      0,
-    );
+      {time: 0, info: undefined as AudioFile | undefined},
+    ).time;
   }
 
   constructor(private options: HypnosisFileAudioPlayerConfig<T>) {
