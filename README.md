@@ -1,6 +1,6 @@
 [![GitHub license](https://img.shields.io/github/license/wulkanat/Hypnothing.svg)](https://github.com/wulkanat/Hypnothing/blob/master/LICENSE)
 ![build](https://github.com/wulkanat/Hypnothing/actions/workflows/main.yml/badge.svg)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/https/wulkanat.github.io/Hypnothing/.svg)](https://wulkanat.github.io/Hypnothing/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/https/theaninova.github.io/Hypnothing/.svg)](https://theaninova.github.io/Hypnothing/)
 
 # Hypnothing
 
