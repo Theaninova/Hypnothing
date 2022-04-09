@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CreativeWork} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {CreativeWork} from '@theaninova/hypnothing-core/lib/schema.org';
 
 @Component({
   selector: 'creative-work',

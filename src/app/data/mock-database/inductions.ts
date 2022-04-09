@@ -1,5 +1,5 @@
-import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {TranceInduction} from '@theaninova/hypnothing-core/lib/trance/trance-induction';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
 export const INDUCTIONS: Record<Uuid, TranceInduction> = {
   'induction:mind_melt': {
     title: 'Mind Melt',

@@ -7,7 +7,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {BinauralBeatConfig} from './binaural';
-import {AudioFile} from '@wulkanat/hypnothing-core/lib/audio';
+import {AudioFile} from '@theaninova/hypnothing-core/lib/audio';
 import {DataProvider} from '../data/data.provider';
 import {
   composeAudioFileUuidsFromConfig,

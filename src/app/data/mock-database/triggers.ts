@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisTrigger} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-trigger';
 
 export const TRIGGERS: Record<Uuid, HypnosisTrigger> = {
   'trigger:rest_of_the_day': {

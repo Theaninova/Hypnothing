@@ -7,7 +7,7 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {HypnosisThing} from '@theaninova/hypnothing-core/lib/hypnosis';
 import {MatSelectionList} from '@angular/material/list';
 import {merge} from 'lodash-es';
 import {HypnosisSectionConfiguration} from '../../audio/hypnosis-file-config';

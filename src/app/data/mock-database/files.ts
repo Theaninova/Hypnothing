@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisFile} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-file';
 
 export const FILES: Record<Uuid, HypnosisFile> = {
   'file:gamer_files_shooter': {

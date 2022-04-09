@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import {DataProvider} from '../data.provider';
 import {clone, merge} from 'lodash-es';
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {HypnosisThing} from '@theaninova/hypnothing-core/lib/hypnosis';
 
 @Component({
   selector: 'hypnosis-search',

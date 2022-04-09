@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {AudioFile} from '@wulkanat/hypnothing-core/lib/audio';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {AudioFile} from '@theaninova/hypnothing-core/lib/audio';
 import {initial, keyBy, last} from 'lodash-es';
 
 // simplified version

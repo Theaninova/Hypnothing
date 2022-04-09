@@ -2,12 +2,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   AudioOptions,
   ThingWithAudio,
-} from '@wulkanat/hypnothing-core/lib/audio';
+} from '@theaninova/hypnothing-core/lib/audio';
 import {
   Author,
   AuthorReference,
   Uuid,
-} from '@wulkanat/hypnothing-core/lib/schema.org';
+} from '@theaninova/hypnothing-core/lib/schema.org';
 import {DataProvider} from '../../data/data.provider';
 import {
   flatMap,

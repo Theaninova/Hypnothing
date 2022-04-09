@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisWarning} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-warning';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisWarning} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-warning';
 
 export const WARNINGS: Record<Uuid, HypnosisWarning> = {
   'warning:dummy': {

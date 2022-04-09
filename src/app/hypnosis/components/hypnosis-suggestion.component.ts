@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
+import {HypnosisSuggestion} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
 
 @Component({
   selector: 'hypnosis-suggestion',

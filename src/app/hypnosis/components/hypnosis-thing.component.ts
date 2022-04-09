@@ -6,12 +6,12 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {HypnosisThing} from '@theaninova/hypnothing-core/lib/hypnosis';
 import {merge} from 'lodash-es';
 import {
   AudioOptions,
   ThingWithAudio,
-} from '@wulkanat/hypnothing-core/lib/audio';
+} from '@theaninova/hypnothing-core/lib/audio';
 import {HypnosisSectionConfiguration} from '../../audio/hypnosis-file-config';
 
 @Component({

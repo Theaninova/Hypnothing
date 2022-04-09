@@ -1,16 +1,16 @@
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {HypnosisThing} from '@theaninova/hypnothing-core/lib/hypnosis';
 import {
   AuthorReference,
   CreativeWork,
   Uuid,
-} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
-import {TranceInduction} from '@wulkanat/hypnothing-core/lib/trance/trance-induction';
-import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
-import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
-import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety';
-import {HypnosisWaker} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker';
-import {isThingWithAudio} from '@wulkanat/hypnothing-core/lib/audio';
+} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisFile} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-file';
+import {TranceInduction} from '@theaninova/hypnothing-core/lib/trance/trance-induction';
+import {HypnosisTrigger} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-trigger';
+import {HypnosisSuggestion} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
+import {HypnosisSafetyGuard} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-safety';
+import {HypnosisWaker} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-waker';
+import {isThingWithAudio} from '@theaninova/hypnothing-core/lib/audio';
 
 export interface HypnosisSectionConfiguration<T extends HypnosisThing> {
   thing?: T;

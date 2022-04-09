@@ -1,4 +1,4 @@
-import {Author, Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {Author, Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
 
 export const AUTHORS: Record<Uuid, Author> = {
   'author:theania': {

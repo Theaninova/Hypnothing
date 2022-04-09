@@ -4,8 +4,8 @@ import {
   HypnosisThing,
   HypnosisTypeEnumerator,
   SpecificHypnosisType,
-} from '@wulkanat/hypnothing-core/lib/hypnosis';
-import {Reference} from '@wulkanat/hypnothing-core/lib/util';
+} from '@theaninova/hypnothing-core/lib/hypnosis';
+import {Reference} from '@theaninova/hypnothing-core/lib/util';
 
 @Pipe({
   name: 'fetch',

@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisWaker} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-waker';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisWaker} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-waker';
 
 export const WAKERS: Record<Uuid, HypnosisWaker> = {
   'waker:count_up_long': {

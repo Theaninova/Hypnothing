@@ -1,9 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HypnosisFile} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-file';
+import {HypnosisFile} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-file';
 import {FormBuilder} from '@angular/forms';
 import {merge} from 'lodash-es';
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
-import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
+import {HypnosisThing} from '@theaninova/hypnothing-core/lib/hypnosis';
+import {HypnosisSuggestion} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
 import {DataProvider} from '../data/data.provider';
 import {
   HypnosisFileConfiguration,

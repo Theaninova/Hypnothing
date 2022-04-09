@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HypnosisTrigger} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-trigger';
+import {HypnosisTrigger} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-trigger';
 
 @Component({
   selector: 'trigger-list-item',

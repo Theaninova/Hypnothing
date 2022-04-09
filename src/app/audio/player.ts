@@ -1,4 +1,4 @@
-import {AudioFile, VolumeChoice} from '@wulkanat/hypnothing-core/lib/audio';
+import {AudioFile, VolumeChoice} from '@theaninova/hypnothing-core/lib/audio';
 import {BinauralBeat, BinauralBeatConfig} from './binaural';
 import axios from 'axios';
 import {reduce, zip, last} from 'lodash-es';

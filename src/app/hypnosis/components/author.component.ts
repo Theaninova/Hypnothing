@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Author} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {Author} from '@theaninova/hypnothing-core/lib/schema.org';
 
 @Component({
   selector: 'author',

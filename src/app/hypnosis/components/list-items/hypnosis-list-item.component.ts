@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {HypnosisThing} from '@wulkanat/hypnothing-core/lib/hypnosis';
+import {HypnosisThing} from '@theaninova/hypnothing-core/lib/hypnosis';
 import {merge} from 'lodash-es';
 import {HypnosisSectionConfiguration} from '../../../audio/hypnosis-file-config';
 

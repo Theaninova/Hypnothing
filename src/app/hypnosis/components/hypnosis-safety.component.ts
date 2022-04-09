@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety';
+import {HypnosisSafetyGuard} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-safety';
 
 @Component({
   selector: 'hypnosis-safety',

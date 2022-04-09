@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisSuggestion} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisSuggestion} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-suggestion';
 
 export const SUGGESTIONS: Record<Uuid, HypnosisSuggestion> = {
   'suggestion:trance_when_you_die': {

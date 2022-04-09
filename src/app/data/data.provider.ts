@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
 import {find, flatMap, filter, every, tail, flattenDeep} from 'lodash-es';
 import {MOCK_DATABASE} from './mock-database/mock-database';
 import {
   HypnosisThing,
   HypnosisTypeEnumerator,
   SpecificHypnosisType,
-} from '@wulkanat/hypnothing-core/lib/hypnosis';
+} from '@theaninova/hypnothing-core/lib/hypnosis';
 
 /**
  * Wait for specified amount of time

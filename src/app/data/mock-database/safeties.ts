@@ -1,5 +1,5 @@
-import {Uuid} from '@wulkanat/hypnothing-core/lib/schema.org';
-import {HypnosisSafetyGuard} from '@wulkanat/hypnothing-core/lib/hypnosis/hypnosis-safety';
+import {Uuid} from '@theaninova/hypnothing-core/lib/schema.org';
+import {HypnosisSafetyGuard} from '@theaninova/hypnothing-core/lib/hypnosis/hypnosis-safety';
 
 export const SAFETIES: Record<Uuid, HypnosisSafetyGuard> = {
   'safety:revert_if_too_intense': {
